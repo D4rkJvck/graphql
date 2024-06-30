@@ -1,6 +1,6 @@
 :root {
     /* COLORS */
-    --body-bg: url("img/background_dark.webp");
+    --body-bg: url("../img/bg-dark.webp");
     --section-bg: #00000099;
     
     --color-base: #ffffff25;
