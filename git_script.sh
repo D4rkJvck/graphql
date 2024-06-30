@@ -5,19 +5,19 @@ username="your_username"
 email="your_email"
 
 log() {
-    echo -e "\n$1"
-    sleep 2
+    echo -e "$1"
+    sleep 1
 }
 
 # Check if there is already a username and email in configuration...
 # If no username or email if found, it will config it...
 check_credentials() {
-    log "Checking credentials..."
+    log "\nChecking credentials..."
 
     if ! git config --get user.name || ! git config --get user.email; then
         log "No Credentials found!!!"
-        log "Configuring credentials..."
 
+        log "Configuring credentials..."
         git config user.name "$username"
         git config user.email "$email"
     fi
@@ -28,16 +28,16 @@ check_credentials() {
 # Check if we are in the desired branch before adding files...
 # Exit the program is we're in a different branch to prevent confusion...
 check_branch() {
-    log "Checking branch..."
+    log "\nChecking branch..."
     git branch -a
 
     if [ "$(git rev-parse --abbrev-ref HEAD)" != "$desired_branch" ]; then
         log "[WARNING] Not on branch $desired_branch..."
-        log "Please restart...\n"
+        log "Please restart..."
         exit 1
     fi
 
-    log "You're in the desired branch!"
+    log "You're on branch $desired_branch!"
 }
 
 # Add the files given as arguments...
@@ -47,13 +47,14 @@ add_files() {
 
     if [ $# -eq 0 ]; then
         log "No Files specified..."
-        log "Adding all changes...\n"
+
+        log "Adding all changes..."
         git add .
     else
-        log "\nAdding Specified files..."
+        log "Adding Specified files..."
         for file in "$@"; do
             git add "$file"
-            log "Added: $file\n"
+            log "Added: $file"
         done
     fi
 
@@ -64,7 +65,7 @@ add_files() {
 # Then commit the changes...
 # Then push the changes...
 commit_and_push() {
-    log "Time to push changes..."
+    log "\nTime to push changes..."
 
     git status
     read -r -p "Enter Commit Message: " commit_message
@@ -84,7 +85,7 @@ auto_push() {
         if [[ -n $(git status -s) ]]; then
             add_files "$@"
             # View new added files...
-            log "Status:\n"
+            log "Status:"
             git status
             # Generate commit message...
             git commit -a -m "Auto Commit - $i"
