@@ -4,12 +4,14 @@ desired_branch="main"
 username="your_username"
 email="your_email"
 
+# Prints its first argument...
+# Adds a 1 second cooldown...
 log() {
     echo -e "$1"
     sleep 1
 }
 
-# Check if there is already a username and email in configuration...
+# Checks if there is already a username and email in configuration...
 # If no username or email if found, it will config it...
 check_credentials() {
     log "\nChecking credentials..."
@@ -25,8 +27,8 @@ check_credentials() {
     log "Credentials have been configured successfully!"
 }
 
-# Check if we are in the desired branch before adding files...
-# Exit the program is we're in a different branch to prevent confusion...
+# Checks if we are in the desired branch before adding files...
+# Exits the program is we're in a different branch to prevent confusion...
 check_branch() {
     log "\nChecking branch..."
     git branch -a
@@ -40,7 +42,7 @@ check_branch() {
     log "You're on branch $desired_branch!"
 }
 
-# Add the files given as arguments...
+# Adds the files given as arguments...
 # If there is no arguments, it adds all files...
 add_files() {
     log "\nAdding files..."
@@ -52,6 +54,7 @@ add_files() {
         git add .
     else
         log "Adding Specified files..."
+
         for file in "$@"; do
             git add "$file"
             log "Added: $file"
@@ -61,9 +64,9 @@ add_files() {
     log "Files added successfully!"
 }
 
-# Prompt the user for a commit message...
-# Then commit the changes...
-# Then push the changes...
+# Prompts the user for a commit message...
+# Then commits the changes...
+# Then pushes the changes...
 commit_and_push() {
     log "\nTime to push changes..."
 
@@ -84,13 +87,13 @@ auto_push() {
     while true; do
         if [[ -n $(git status -s) ]]; then
             add_files "$@"
-            # View new added files...
+
             log "Status:"
             git status
-            # Generate commit message...
+
             git commit -a -m "Auto Commit - $i"
             git push origin master
-            # Increment commit counter...
+
             i=$((i + 1))
         fi
         sleep 1200
