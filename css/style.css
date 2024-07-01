@@ -1,39 +1,52 @@
 :root {
-    /* COLORS */
-    --body-bg: url("../img/bg-dark.webp");
-    --section-bg: #00000099;
-    
-    --color-base: #ffffff25;
-    --color-highlight: #999999;
+    /* BACKGROUND */
+    --bg-img: url("../img/bg-dark.webp");
+    --bg-trans-black: #00000099;
+    --bg-gray: #171717;
 
-    /* FONTS */
-    --font-12: clamp(.75rem, .75rem + .25vw, 1rem);
-    --font-14: clamp(.875rem, .75rem + .5vw, 1.25rem);
-    --font-16: clamp(1rem, .75rem + 1vw, 1.5rem);
-    --font-18: clamp(1.125rem, .75rem + 1.5vw, 2rem);
-    --font-20: clamp(1.25rem, .75rem + 2vw, 2.5rem);
+    /* COLOR */
+    --text-light-gray: #ccc;
+    --text-gray: #888;
+    --text-dark-gray: #333;
+
+    /* FONT-SIZE */
+    --text-sm: clamp(.75rem, .75rem + .25vw, 1rem);
+    --text-base: clamp(.875rem, .75rem + .5vw, 1.25rem);
+    --text-lg: clamp(1rem, .75rem + 1vw, 1.5rem);
+    --text-xl: clamp(1.125rem, .75rem + 1.5vw, 2rem);
+    --text-xxl: clamp(1.25rem, .75rem + 2vw, 2.5rem);
+
+    /* OTHERS */
+    --rounded-md: .5em;
 }
 
-* {
-    align-items: center;
-    border-radius: 8px;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    color: var(--color-base);
-    font-family: monospace;
-    font-size: var(--font-12);
-    justify-content: center;
     margin: 0;
-    overflow: auto;
     padding: 0;
     scrollbar-width: none;
 }
 
 body {
-    background: var(--body-bg);
+    background: var(--bg-img);
+    background-size: cover;
+    color: var(--text-light-gray);
     display: grid;
-    grid-template-columns: 85vw;
+    grid-template-columns: 90vw;
     grid-template-rows: 10vh 1fr 5vh;
+    font: var(--text-sm) system-ui;
 }
 
-/******************** GENERIC ********************/
+header {
+    display: flex;
+}
 
+main {
+    min-height: 85vh;
+}
+
+footer {
+    display: flex;
+}
