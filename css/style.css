@@ -37,6 +37,7 @@ body {
     grid-template-columns: 90vw;
     grid-template-rows: 10vh 1fr 5vh;
     font: var(--text-sm) system-ui;
+    justify-content: center;
 }
 
 header {
@@ -44,6 +45,9 @@ header {
 }
 
 main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     min-height: 85vh;
 }
 
