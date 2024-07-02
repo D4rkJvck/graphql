@@ -1,11 +1,11 @@
 import { MAIN } from "../utils/elements.js"
-import GraphSection from "./section-graphs.js"
 import ProfileSection from "./section-profile.js"
 
 export default class LoginForm extends HTMLElement {
     constructor() {
-        super()
-        this.shadow = this.attachShadow({ mode: "open" })
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
+
         this.shadow.innerHTML = /*html*/`
             <form>
                 <p>Login</p>
@@ -107,10 +107,8 @@ export default class LoginForm extends HTMLElement {
     }
 
     disconnecteCallback() {
-        MAIN.append(
-            new ProfileSection(),
-            new GraphSection(),
-        )
+        console.log('Disconnected');
+        MAIN.appendChild(new ProfileSection);
     }
 
     #submission() {
