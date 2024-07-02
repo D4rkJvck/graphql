@@ -1,6 +1,6 @@
 import { MAIN } from "../utils/elements.js"
-// import GraphSection from "./section-graphs.js"
-// import ProfileSection from "./section-profile.js"
+import GraphSection from "./section-graphs.js"
+import ProfileSection from "./section-profile.js"
 
 export default class LoginForm extends HTMLElement {
     constructor() {
@@ -106,6 +106,13 @@ export default class LoginForm extends HTMLElement {
         this.#submission();
     }
 
+    disconnecteCallback() {
+        MAIN.append(
+            new ProfileSection(),
+            new GraphSection(),
+        )
+    }
+
     #submission() {
         const form = this.shadow.querySelector('form');
 
@@ -137,10 +144,6 @@ export default class LoginForm extends HTMLElement {
                     .then(token => {
                         localStorage.setItem('jwtToken', token)
                         this.remove()
-                        // MAIN.append(
-                        //     new ProfileSection(),
-                        //     new GraphSection(),
-                        // )
                     })
                     .catch((error) => {
                         alert(error)
