@@ -1,9 +1,14 @@
+import { MAIN } from "../utils/elements.js";
 import BarChart from "./d3/bar.js";
 
 export default class GraphSection extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+
+        if (!MAIN.classList.contains('connected')) {
+            
+        }
 
         this.style.background =  /* css */ `var(--bg-trans-black)`;
         this.style.borderRadius = /* css */ `var(--rounded-md)`;

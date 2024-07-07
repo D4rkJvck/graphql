@@ -3,7 +3,7 @@ import GraphSection from "./components/section.js";
 import ProfileSection from "./components/aside.js";
 import * as dom from "./utils/elements.js";
 
-if (dom.MAIN.hasAttribute('connected')) {
+if (dom.MAIN.classList.contains('connected')) {
     dom.MAIN.append(
         new ProfileSection,
         new GraphSection
@@ -16,10 +16,10 @@ setInterval(() => {
     const jwt = localStorage.getItem('jwtToken');
 
     if (jwt) {
-        dom.MAIN.setAttribute('connected', 'connected');
+        dom.MAIN.classList.add('connected');
         dom.MAIN.style.display = 'grid';
     } else {
-        dom.MAIN.removeAttribute('connected')
+        dom.MAIN.classList.remove('connected')
         dom.MAIN.style.display = 'flex';
     }
-}, )
+}, 10)

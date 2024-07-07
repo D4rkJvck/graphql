@@ -1,13 +1,11 @@
-import { MAIN } from "../utils/elements.js";
+import { USER_INFO_QUERY } from "../graphql/profile.js";
 import { fetchFromGraphiQL } from "../utils/fetch.js";
-import LoginForm from "./form.js";
 
 export default class ProfileSection extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
         
-
         this.shadow.innerHTML = /* html */ `
             <aside>
                 
@@ -26,13 +24,7 @@ export default class ProfileSection extends HTMLElement {
         `;
         this.shadow.appendChild(style);
 
-        this.query = /* GraphQL */ `
-            {
-                user {
-                    attrs
-                }
-            }
-        `;
+        this.query = USER_INFO_QUERY;
     }
 
     connectedCallback() {
@@ -42,10 +34,6 @@ export default class ProfileSection extends HTMLElement {
                 console.log(attrs)
             })
             .catch(err => console.error(err))
-    }
-
-    disconnectedCallback() {
-        MAIN.appendChild(new LoginForm)
     }
 
     static define(tag = 'profile-section') {

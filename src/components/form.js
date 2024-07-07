@@ -5,10 +5,6 @@ export default class LoginForm extends HTMLElement {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
 
-        if(this.getAttribute('connected')) {
-            this.style.display = 'none'
-        }
-
         this.shadow.innerHTML = /*html*/`
             <form>
                 <p>Login</p>
@@ -122,6 +118,7 @@ export default class LoginForm extends HTMLElement {
 
                 const user = form.user.value
                 const password = form.password.value
+                // TODO: Reset Inputs
                 const credentials = btoa(`${user}:${password}`)
 
                 fetch('https://learn.zone01dakar.sn/api/auth/signin', {
@@ -136,14 +133,14 @@ export default class LoginForm extends HTMLElement {
                         if (response.ok) {
                             return response.json()
                         } else if (response.status === 401) {
-                            // TODO: Alert User and Reset Inputs
+                            // TODO: Alert User
                         } else {
                             throw new Error('Failed to authenticate')
                         }
                     })
                     .then(token => {
                         localStorage.setItem('jwtToken', token)
-                        MAIN.setAttribute('connected', 'connected')
+                        // MAIN.classList.add('connected')
                     })
                     .catch((error) => {
                         alert(error)
