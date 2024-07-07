@@ -1,0 +1,22 @@
+:root {
+    /* BACKGROUND */
+    --bg-img: url("../assets/bg-dark.webp");
+    --bg-trans-black: #00000099;
+    --bg-gray: #171717;
+
+    /* COLOR */
+    --text-light-gray: #ccc;
+    --text-gray: #888;
+    --text-dark-gray: #333;
+
+    /* FONT-SIZE */
+    --text-sm: clamp(.75rem, .75rem + .25vw, 1rem);
+    --text-base: clamp(.875rem, .75rem + .5vw, 1.25rem);
+    --text-lg: clamp(1rem, .75rem + 1vw, 1.5rem);
+    --text-xl: clamp(1.125rem, .75rem + 1.5vw, 2rem);
+    --text-xxl: clamp(1.25rem, .75rem + 2vw, 2.5rem);
+
+    /* OTHERS */
+    --rounded-md: .5em;
+    --element-gap: 1.25em;
+}
