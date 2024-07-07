@@ -1,10 +1,13 @@
 import { MAIN } from "../utils/elements.js"
-import ProfileSection from "./section-profile.js"
 
 export default class LoginForm extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
+
+        if(this.getAttribute('connected')) {
+            this.style.display = 'none'
+        }
 
         this.shadow.innerHTML = /*html*/`
             <form>
@@ -108,7 +111,6 @@ export default class LoginForm extends HTMLElement {
 
     disconnecteCallback() {
         console.log('Disconnected');
-        MAIN.appendChild(new ProfileSection);
     }
 
     #submission() {
@@ -141,7 +143,7 @@ export default class LoginForm extends HTMLElement {
                     })
                     .then(token => {
                         localStorage.setItem('jwtToken', token)
-                        this.remove()
+                        MAIN.setAttribute('connected', 'connected')
                     })
                     .catch((error) => {
                         alert(error)
@@ -154,3 +156,5 @@ export default class LoginForm extends HTMLElement {
         customElements.define(tag, this)
     }
 }
+
+LoginForm.define();

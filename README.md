@@ -52,43 +52,65 @@ $ cd graphql/
 ### File System
 
     |
-    + -- css/
+    + -- src/
     |     |
-    |     + -- style.css
-    |
-    + -- img/
-    |     |
-    |     + -- bg-dark.webp
-    |
-    + -- js/
+    |     + -- assets/
+    |     |     |
+    |     |     + -- bg-dark.webp
     |     |
     |     + -- components/
     |     |     |
-    |     |     + -- form-login.js
+    |     |     + -- d3/
+    |     |     |     |
+    |     |     |     + -- bar.js
+    |     |     |     |
+    |     |     |     + -- pie.js
     |     |     |
-    |     |     + -- section-graphs.js
+    |     |     + -- aside.js
     |     |     |
-    |     |     + -- section-profile.js
+    |     |     + -- form.js
+    |     |     |
+    |     |     + -- nav.js
+    |     |     |
+    |     |     + -- section.js
     |     |
-    |     + -- gql/
-    |     |      |
-    |     |      + -- profile.js
-    |     |
-    |     + -- svg/
+    |     + -- graphql/
     |     |     |
-    |     |     + -- bar-chart.js
+    |     |     + -- profile.js
+    |     |
+    |     + -- pages/
+    |     |     |
+    |     |     + --  home.js
+    |     |     |
+    |     |     + -- login.js
+    |     |
+    |     + -- services/
+    |     |     |
+    |     |     + -- api.js
+    |     |     |
+    |     |     + -- auth.js
+    |     |
+    |     + -- styles/
+    |     |     |
+    |     |     + -- global.css
+    |     |     |
+    |     |     + -- variables.css
     |     |
     |     + -- utils/
     |     |     |
     |     |     + -- elements.js
     |     |     |
-    |     |     + -- fetch.js
+    |     |     + -- router.js
+    |     |     |
+    |     |     + -- store.js
     |     |
     |     + -- app.js
+    |     |
+    |     + -- index.html
     |
-    + -- git-script.sh
+    + -- .gitignore
     |
-    + -- index.html
+    + -- gitify.sh
     |
     + -- LICENSE
     |
@@ -100,24 +122,24 @@ $ cd graphql/
 
 ```mermaid
   sequenceDiagram
-    participant Client
-    participant API
+    participant Talent
+    participant GraphiQL
 
     loop until Valid Credentials
-      Client ->> API: POST Credentials
-      Note right of API: CHECK Credentials
+      Talent ->> GraphiQL: POST Credentials
+      Note right of GraphiQL: CHECK Credentials
       alt Invalid Credentials
-        API -->> Client: Unathorized (401)
+        GraphiQL -->> Talent: Unathorized (401)
       else
-        Note right of API: GENERATE Token
-        API -->> Client: GET Token
-        Note left of Client: SAVE Token
+        Note right of GraphiQL: GENERATE Token
+        GraphiQL -->> Talent: GET Token
+        Note left of Talent: SAVE Token
       end
     end
-    Client ->> API: POST Request + Query + Token
-    Note right of API: CHECK Token
-    Note right of API: GENERATE Response
-    API -->> Client: GET Data
+    Talent ->> GraphiQL: POST Request + Query + Token
+    Note right of GraphiQL: CHECK Token
+    Note right of GraphiQL: GENERATE Response
+    GraphiQL -->> Talent: GET Data
 ```
 
 ## Contributing
