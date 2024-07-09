@@ -1,4 +1,7 @@
-import { MAIN } from "../utils/elements.js"
+import { HEADER, MAIN } from "../utils/elements.js"
+import ProfileSection from "./aside.js";
+import NavBar from "./nav.js";
+import GraphSection from "./section.js";
 
 export default class LoginForm extends HTMLElement {
     constructor() {
@@ -105,10 +108,6 @@ export default class LoginForm extends HTMLElement {
         this.#submission();
     }
 
-    disconnecteCallback() {
-        console.log('Disconnected');
-    }
-
     #submission() {
         const form = this.shadow.querySelector('form');
 
@@ -116,10 +115,14 @@ export default class LoginForm extends HTMLElement {
             form.onsubmit = (e) => {
                 e.preventDefault()
 
-                const user = form.user.value
-                const password = form.password.value
-                // TODO: Reset Inputs
-                const credentials = btoa(`${user}:${password}`)
+                const user = form.user.value;
+                const password = form.password.value;
+
+                form.user.value = '';
+                form.password.value = '';
+
+                const bytesTab = new TextEncoder().encode(`${user}:${password}`);
+                const credentials = btoa(String.fromCharCode(...bytesTab));
 
                 fetch('https://learn.zone01dakar.sn/api/auth/signin', {
                     method: 'POST',
@@ -139,8 +142,13 @@ export default class LoginForm extends HTMLElement {
                         }
                     })
                     .then(token => {
-                        localStorage.setItem('jwtToken', token)
-                        // MAIN.classList.add('connected')
+                        localStorage.setItem('jwtToken', token);
+                        MAIN.removeChild(this);
+                        HEADER.appendChild(new NavBar);
+                        MAIN.append(
+                            new ProfileSection,
+                            new GraphSection
+                        );
                     })
                     .catch((error) => {
                         alert(error)

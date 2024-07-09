@@ -27,14 +27,20 @@ header {
 
 main {
     align-items: center;
-    display: grid;
-    grid-template-columns: 20vw 1fr;
-    grid-template-rows: 80vh;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--element-gap);
-    height: 80vh;
     justify-content: center;
+    min-height: 80vh;
 }
 
 footer {
+    align-items: center;
     display: flex;
+}
+
+p {
+    line-height: 100%;
+    text-align: center;
+    width: 100%;
 }
