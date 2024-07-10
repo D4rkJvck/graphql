@@ -78,12 +78,6 @@ $ cd graphql/
     |     |     |
     |     |     + -- profile.js
     |     |
-    |     + -- pages/
-    |     |     |
-    |     |     + --  home.js
-    |     |     |
-    |     |     + -- login.js
-    |     |
     |     + -- services/
     |     |     |
     |     |     + -- api.js
@@ -99,10 +93,6 @@ $ cd graphql/
     |     + -- utils/
     |     |     |
     |     |     + -- elements.js
-    |     |     |
-    |     |     + -- router.js
-    |     |     |
-    |     |     + -- store.js
     |     |
     |     + -- app.js
     |     |

@@ -7,13 +7,22 @@ export default class ProfileSection extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'open' });
         
         this.shadow.innerHTML = /* HTML */ `
-            <figure>
-                <img alt="ID">
-                <figcaption></figcaption>
-            </figure>
-            <fieldset></fieldset>
-            <fieldset></fieldset>
-            <fieldset></fieldset>
+            <fieldset>
+                <legend id="login"></legend>
+                <figure>
+                    <div></div>
+                    <figcaption><span></span></figcaption>
+                </figure>
+            </fieldset>
+            <fieldset>
+                <legend>Level</legend>
+            </fieldset>
+            <fieldset>
+                <legend>XP</legend>
+            </fieldset>
+            <fieldset>
+                <legend>Audit</legend>
+            </fieldset>
         `;
 
         const style = document.createElement('style');
@@ -33,47 +42,121 @@ export default class ProfileSection extends HTMLElement {
                 width: 20vw;
             }
             
-            figure, fieldset {
+            fieldset {
+                align-items: center;
                 background: var(--bg-trans-black);
                 border: 1px solid #333;
                 border-radius: var(--rounded-md);
+                display: flex;
                 height: 19vh;
                 width: 20vw;
             }
+            
+            figure {
+                align-items: center;
+                display: flex;
+                flex-wrap: wrap;
+                height: 100%;
+                // gap: var(--element-gap);
+                justify-content: space-evenly;
+                width: 100%;
+            }
 
-
+            div {
+                border: 1px solid white;
+                border-radius: 50%;
+                height: 6vw;
+                margin-left: 1vw;
+                width: 6vw;
+            }
+            
+            figcaption {
+                color: var(--text-light-gray);
+                display: flex;
+                flex-direction: column;
+                gap: 0.5vw;
+                margin: 0 1vw;
+                width: 10vw;
+            }
+            
+            span {
+                font-size: var(--text-base);
+                font-weight: bolder;
+            }
+            
+            legend {
+                color: var(--text-gray);
+                font-weight: bolder;
+                margin-left: 2vw;
+            }
+            
             @media screen and (max-width: 900px) {
                 :host {
                     min-height: 20vh;
                     width: 100%;
                 }
-
-                figure,  fieldset {
+                
+                fieldset {
                     height: 20vh;
-                    width:
+                    width: 21.5vw;
+                }
+                
+                div {
+                    height: 6vw;
+                    margin: 0;
+                    width: 6vw;
+                }
+                
+                figcaption {
+                    text-align: center;
+                    width: 100%;
                 }
             }
         `;
         this.shadow.appendChild(style);
 
-        this.query = USER_INFO_QUERY;
+        this.query = /* GraphQL */ `
+            query {
+                user_info: user {
+                    login
+                    firstName
+                    lastName
+                    email
+                }
+                xp_amount: transaction_aggregate(
+                    where: { type: { _eq: "xp" }, event: { path: { _eq: "/dakar/div-01" } } }
+                ) {
+                    aggregate {
+                        sum {
+                            amount
+                        }
+                    }
+                }
+            }
+        `;
     }
 
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
-                return {
-                    user_info: data.data.user_info[0].attrs,
-                    xp_amount: data.data.xp_amount.aggregate.sum.amount
-                }
+                const user = data.data.user_info[0];
+
+                this.#render({
+                    login: user.login,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    xpAmount: data.data.xp_amount.aggregate.sum.amount
+                })
             })
-            .then(userData => this.#render(userData))
             .catch(err => console.error(err))
     }
 
     #render(data) {
-        const id_name = this.shadow.querySelector('figcaption');
-        id_name.innerHTML = data.user_info.firstName;
+        const legend = this.shadow.querySelector('#login');
+        const figcaption = this.shadow.querySelector('figcaption');
+
+        legend.innerText = data.login;
+        figcaption.innerHTML = /* HTML */`${data.firstName}<span>${data.lastName}</span>`;
     }
 
     static define(tag = 'profile-section') {

@@ -8,12 +8,16 @@ export default class GraphSection extends HTMLElement {
 
         this.shadow.innerHTML = /* HTML */ `
             <fieldset>
+                <legend>Progress</legend>
             </fieldset>
             <fieldset>
+                <legend></legend>
             </fieldset>
             <fieldset>
+                <legend></legend>
             </fieldset>
             <fieldset>
+                <legend></legend>
             </fieldset>
         `
 
@@ -46,8 +50,9 @@ export default class GraphSection extends HTMLElement {
             }
 
             legend {
-                color: #555;
-                text-align: center;
+                color: var(--text-gray);
+                font-weight: bolder;
+                margin-left: 2vw;
             }
 
             @media screen and (max-width: 900px) {
