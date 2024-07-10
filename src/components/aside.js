@@ -5,7 +5,7 @@ export default class ProfileSection extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
-        
+
         this.shadow.innerHTML = /* HTML */ `
             <fieldset>
                 <legend id="login"></legend>
@@ -26,7 +26,7 @@ export default class ProfileSection extends HTMLElement {
         `;
 
         const style = document.createElement('style');
-        style.innerHTML = /* css */ `
+        style.innerHTML = /* CSS */ `
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -156,7 +156,7 @@ export default class ProfileSection extends HTMLElement {
         const figcaption = this.shadow.querySelector('figcaption');
 
         legend.innerText = data.login;
-        figcaption.innerHTML = /* HTML */`${data.firstName}<span>${data.lastName}</span>`;
+        figcaption.innerHTML = /* HTML */ `${data.firstName}<span>${data.lastName}</span>`;
     }
 
     static define(tag = 'profile-section') {
