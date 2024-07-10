@@ -17,7 +17,7 @@ body {
     gap: var(--element-gap);
     grid-template-columns: 90vw;
     grid-template-rows: 10vh 1fr 5vh;
-    font: var(--text-sm) system-ui;
+    font: var(--text-sm) var(--font-zone01);
     justify-content: center;
 }
 

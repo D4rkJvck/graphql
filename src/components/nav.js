@@ -51,15 +51,14 @@ export default class NavBar extends HTMLElement {
             }
 
             #logo {
-                animation: rot 30s alternate infinite;
                 fill: var(--text-light-gray);
                 height: 8vh;
-                transition: 10s;
+                transition: 2.5s;
             }
             
-            @keyframes rot {
-                from {transform: rotate(0);}
-                to {transform: rotate(360deg)}
+            #logo:hover {
+                fill: var(--text-zone01);
+                transform: rotate(360deg)
             }
 
             #logout {

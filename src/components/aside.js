@@ -10,8 +10,8 @@ export default class ProfileSection extends HTMLElement {
             <fieldset>
                 <legend id="login"></legend>
                 <figure>
-                    <div></div>
-                    <figcaption><span></span></figcaption>
+                    <svg></svg>
+                    <figcaption id="user"><span></span></figcaption>
                 </figure>
             </fieldset>
             <fieldset>
@@ -22,6 +22,8 @@ export default class ProfileSection extends HTMLElement {
             </fieldset>
             <fieldset>
                 <legend>Audit</legend>
+                <div></div>
+                <svg></svg>
             </fieldset>
         `;
 
@@ -49,6 +51,7 @@ export default class ProfileSection extends HTMLElement {
                 border-radius: var(--rounded-md);
                 display: flex;
                 height: 19vh;
+                justify-content: space-evenly;
                 width: 20vw;
             }
             
@@ -62,8 +65,8 @@ export default class ProfileSection extends HTMLElement {
                 width: 100%;
             }
 
-            div {
-                border: 1px solid white;
+            svg {
+                border: 1px solid var(--text-zone01);
                 border-radius: 50%;
                 height: 6vw;
                 margin-left: 1vw;
@@ -90,6 +93,15 @@ export default class ProfileSection extends HTMLElement {
                 margin-left: 2vw;
             }
             
+            div {
+                color: var(--text-zone01);
+                font-size: calc(var(--text-xxl) * 2);
+                height: 100%;
+                // border: 1px solid white;
+                text-align: center;
+                width: 10vw;
+            }
+            
             @media screen and (max-width: 900px) {
                 :host {
                     min-height: 20vh;
@@ -101,7 +113,7 @@ export default class ProfileSection extends HTMLElement {
                     width: 21.5vw;
                 }
                 
-                div {
+                svg {
                     height: 6vw;
                     margin: 0;
                     width: 6vw;
@@ -110,6 +122,10 @@ export default class ProfileSection extends HTMLElement {
                 figcaption {
                     text-align: center;
                     width: 100%;
+                }
+
+                div {
+                    font-size: calc(var(--text-xxl) * 1.5);
                 }
             }
         `;
@@ -121,7 +137,7 @@ export default class ProfileSection extends HTMLElement {
                     login
                     firstName
                     lastName
-                    email
+                    auditRatio
                 }
                 xp_amount: transaction_aggregate(
                     where: { type: { _eq: "xp" }, event: { path: { _eq: "/dakar/div-01" } } }
@@ -140,11 +156,12 @@ export default class ProfileSection extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 const user = data.data.user_info[0];
-
+                console.log(user.auditRatio);
                 this.#render({
                     login: user.login,
                     firstName: user.firstName,
                     lastName: user.lastName,
+                    auditRatio: user.auditRatio.toFixed(1),
                     xpAmount: data.data.xp_amount.aggregate.sum.amount
                 })
             })
@@ -152,11 +169,13 @@ export default class ProfileSection extends HTMLElement {
     }
 
     #render(data) {
-        const legend = this.shadow.querySelector('#login');
-        const figcaption = this.shadow.querySelector('figcaption');
+        const loginLegend = this.shadow.querySelector('#login');
+        const userFigcaption = this.shadow.querySelector('#user');
+        const auditDiv = this.shadow.querySelector('div');
 
-        legend.innerText = data.login;
-        figcaption.innerHTML = /* HTML */ `${data.firstName}<span>${data.lastName}</span>`;
+        loginLegend.innerText = data.login;
+        userFigcaption.innerHTML = /* HTML */ `${data.firstName}<span>${data.lastName}</span>`;
+        auditDiv.innerText = data.auditRatio;
     }
 
     static define(tag = 'profile-section') {

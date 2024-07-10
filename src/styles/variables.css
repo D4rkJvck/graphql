@@ -8,6 +8,7 @@
     --text-light-gray: #ccc;
     --text-gray: #888;
     --text-dark-gray: #333;
+    --text-zone01: #00d4a1;
 
     /* FONT-SIZE */
     --text-sm: clamp(.75rem, .75rem + .25vw, 1rem);
@@ -17,6 +18,7 @@
     --text-xxl: clamp(1.25rem, .75rem + 2vw, 2.5rem);
 
     /* OTHERS */
+    --font-zone01: "IBM Plex Sans", sans-serif;
     --rounded-md: .5em;
     --element-gap: 1vw;
 }
