@@ -5,10 +5,12 @@
     --bg-gray: #171717;
 
     /* COLOR */
-    --text-light-gray: #ccc;
+    --text-light-gray: #bdbdbd;
     --text-gray: #888;
     --text-dark-gray: #333;
-    --text-zone01: #00d4a1;
+    --text-zone01-bim: #00d4a1;
+    --text-zone01-snap: #e63e61;
+    --text-zone01-stats: #caadff;
 
     /* FONT-SIZE */
     --text-sm: clamp(.75rem, .75rem + .25vw, 1rem);

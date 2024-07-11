@@ -57,7 +57,7 @@ export default class NavBar extends HTMLElement {
             }
             
             #logo:hover {
-                fill: var(--text-zone01);
+                fill: var(--text-zone01-stats);
                 transform: rotate(360deg)
             }
 
@@ -66,7 +66,7 @@ export default class NavBar extends HTMLElement {
             }
 
             #logout:hover {
-                fill: brown;
+                fill: var(--text-zone01-snap);
                 transform: scale(1.2);
             }
         `
@@ -78,7 +78,7 @@ export default class NavBar extends HTMLElement {
 
         btn.onclick = () => {
             localStorage.removeItem('jwtToken');
-            HEADER.removeChild(this);
+            this.remove();
             MAIN.innerHTML = '';
             MAIN.appendChild(new LoginForm);
         }

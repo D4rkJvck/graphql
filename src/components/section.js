@@ -8,13 +8,13 @@ export default class GraphSection extends HTMLElement {
 
         this.shadow.innerHTML = /* HTML */ `
             <fieldset>
-                <legend>Progress</legend>
+                <legend>Progress (line)</legend>
             </fieldset>
             <fieldset>
-                <legend></legend>
+                <legend>Top Projects (pie)</legend>
             </fieldset>
             <fieldset>
-                <legend></legend>
+                <legend>Top Skills (radar)</legend>
             </fieldset>
             <fieldset>
                 <legend></legend>
@@ -32,8 +32,8 @@ export default class GraphSection extends HTMLElement {
             :host {
                 align-items: center;
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
                 gap: var(--element-gap);
                 // height: 80vh;
                 justify-content: center;
@@ -46,23 +46,34 @@ export default class GraphSection extends HTMLElement {
                 border: 1px solid #333;
                 border-radius: var(--rounded-md);
                 min-height: 40vh;
-                // width: 34vw;
+            }
+            
+            fieldset:hover {
+                border: 2px solid var(--text-zone01-stats);
             }
 
+            fieldset:hover * {
+                color: var(--text-zone01-bim);
+            }
+
+
             legend {
-                color: var(--text-gray);
+                color: var(--text-zone01-stats);
                 font-weight: bolder;
                 margin-left: 2vw;
             }
-
+            
             @media screen and (max-width: 900px) {
                 :host {
+                    display: flex;
+                    flex-wrap: wrap;
                     width: 100%;
                 }
-
-                // fieldset {
-                //     height: 35vw;
-                // }
+                
+                fieldset {
+                    flex: 1 1 40vw;
+                    min-width: 300px;
+                }
             }
             `;
             this.shadow.appendChild(style);

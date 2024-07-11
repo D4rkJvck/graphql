@@ -8,7 +8,7 @@ export default class LoginForm extends HTMLElement {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
 
-        this.shadow.innerHTML = /*html*/`
+        this.shadow.innerHTML = /* HTML */`
             <form>
                 <p>Login</p>
                 <div>
@@ -44,8 +44,12 @@ export default class LoginForm extends HTMLElement {
             }
 
             form:hover {
-                border: 1px solid var(--text-dark-gray);
+                border: 2px solid var(--text-zone01-stats);
                 transform: scale(1.5);
+            }
+            
+            form:hover * {
+                color: var(--text-zone01-bim);
             }
 
             p {
@@ -79,7 +83,7 @@ export default class LoginForm extends HTMLElement {
             }
 
             input::placeholder {
-                color: var(--text-dark-gray);
+                color: var(--text-zone01-stats);
                 font-family: monospace;
             }
 
@@ -95,8 +99,8 @@ export default class LoginForm extends HTMLElement {
             }
 
             button:hover {
-                background-color: black;
-                color: var(--text-light-gray);
+                background-color: var(--text-zone01-bim);
+                color: var(--text-dark-gray);
                 font-weight: bolder;
                 letter-spacing: .5em;
             }
@@ -135,7 +139,7 @@ export default class LoginForm extends HTMLElement {
                     .then(response => {
                         if (response.ok) {
                             return response.json()
-                        } else if (response.status === 401) {
+                        // } else if (response.status === 401) {
                             // TODO: Alert User
                         } else {
                             throw new Error('Failed to authenticate')
@@ -143,7 +147,7 @@ export default class LoginForm extends HTMLElement {
                     })
                     .then(token => {
                         localStorage.setItem('jwtToken', token);
-                        MAIN.removeChild(this);
+                        this.remove();
                         HEADER.appendChild(new NavBar);
                         MAIN.append(
                             new ProfileSection,
