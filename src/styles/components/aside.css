@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:host, fieldset, figure, figcaption, #xp-unit, #rank {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+:host {
+    flex-wrap: wrap;
+    gap: var(--element-gap);
+    justify-content: flex-start;
+    min-height: 80vh;
+    width: 20vw;
+}
+
+fieldset {
+    align-items: center;
+    background: var(--bg-trans-black);
+    border: 1px solid #333;
+    border-radius: var(--rounded-md);
+    flex: 1;
+    height: 19vh;
+    min-width: 180px;
+    transition: .5s;
+}
+
+fieldset:hover {
+    border: 2px solid var(--text-zone01-stats);
+    transform: scale(1.1);
+}
+
+fieldset:hover * {
+    color: var(--text-zone01-bim);
+}
+
+figure {
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    /* gap: var(--element-gap); */
+    width: 100%;
+}
+
+svg, #xp-unit, #rank {
+    border: 1px solid var(--text-dark-gray);
+    border-radius: 50%;
+    height: 7.5vw;
+    width: 7.5vw;
+}
+
+#last-name {
+    font-size: var(--text-base);
+    font-weight: bolder;
+    text-align: left;
+    width: 100%;
+}
+
+legend {
+    color: var(--text-zone01-stats);
+    font-weight: bolder;
+    margin-left: 2vw;
+}
+
+figcaption {
+    /* margin: 0 1vw; */
+    width: fit-content;
+}
+
+#user {
+    flex-direction: column;
+    gap: 0.5vw;
+    text-align: left;
+}
+
+#xp-unit {
+    font-size: var(--text-xxl);
+}
+
+#audit, #level, #xp-amount {
+    font-size: calc(var(--text-xxl) * 1.5);
+    text-align: center;
+}
+
+#rank {
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+/* #user-icon {
+    height: 8vh;
+} */
+
+@media screen and (max-width: 900px) {
+    :host {
+        min-height: 20vh;
+        width: 100%;
+    }
+    
+    fieldset {
+        height: 20vh;
+        /* width: 21.5vw; */
+    }
+                    
+    #user, #last-name {
+        text-align: center;
+        width: 100%;
+    }
+}

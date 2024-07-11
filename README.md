@@ -28,7 +28,7 @@ Click on badges to get to the code...
 
 ### API & Auth
 [![GRAPHQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)](src/graphql/)
-[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)]()
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](src/components/form.js)
 
 ### Development
 [![VERCEL](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)]()
@@ -60,11 +60,9 @@ $ cd graphql/
     |     |
     |     + -- components/
     |     |     |
-    |     |     + -- d3/
+    |     |     + -- charts/
     |     |     |     |
     |     |     |     + -- bar.js
-    |     |     |     |
-    |     |     |     + -- pie.js
     |     |     |
     |     |     + -- aside.js
     |     |     |
@@ -76,7 +74,9 @@ $ cd graphql/
     |     |
     |     + -- graphql/
     |     |     |
-    |     |     + -- profile.js
+    |     |     + -- charts.gql.js
+    |     |     |
+    |     |     + -- profile.gql.js
     |     |
     |     + -- services/
     |     |     |
@@ -86,13 +86,35 @@ $ cd graphql/
     |     |
     |     + -- styles/
     |     |     |
+    |     |     + -- components/
+    |     |     |     |
+    |     |     |     + -- aside.css
+    |     |     |     |
+    |     |     |     + -- form.css
+    |     |     |     |
+    |     |     |     + -- nav.css
+    |     |     |     |
+    |     |     |     + -- section.css
+    |     |     |
     |     |     + -- global.css
     |     |     |
     |     |     + -- variables.css
     |     |
+    |     + -- templates/
+    |     |     |
+    |     |     + -- aside.html.js
+    |     |     |
+    |     |     + -- form.html.js
+    |     |     |
+    |     |     + -- nav.html.js
+    |     |     |
+    |     |     + -- section.html.js
+    |     |
     |     + -- utils/
     |     |     |
     |     |     + -- elements.js
+    |     |     |
+    |     |     + -- format.js
     |     |
     |     + -- app.js
     |     |

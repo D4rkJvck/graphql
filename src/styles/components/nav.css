@@ -1,0 +1,41 @@
+:host {
+    align-items: center;
+    display: flex;
+    gap: var(--element-gap);
+    height: 10vh;
+    justify-content: space-between;
+    /* min-width: 250px; */
+    width: 90vw;
+}
+
+h1 {
+    color: var(--text-light-gray);
+    font-size: var(--text-xl);
+    text-align: center;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#logo {
+    fill: var(--text-light-gray);
+    height: 8vh;
+    transition: 2.5s;
+}
+
+#logo:hover {
+    fill: var(--text-zone01-stats);
+    transform: rotate(360deg)
+}
+
+#logout {
+    fill: var(--text-dark-gray);
+}
+
+#logout:hover {
+    fill: var(--text-zone01-snap);
+    transform: scale(1.2);
+}

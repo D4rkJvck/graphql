@@ -1,0 +1,75 @@
+* {
+    border-radius: var(--rounded-md);
+    box-sizing: border-box;
+}
+
+form {
+    background: var(--bg-trans-black);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+    padding: 1em;
+    transition: .5s ease-in-out;
+}
+
+form:hover {
+    border: 2px solid var(--text-zone01-stats);
+    transform: scale(1.5);
+}
+
+form:hover * {
+    color: var(--text-zone01-bim);
+}
+
+p {
+    font-size: var(--text-lg);
+    font-weight: bolder;
+    text-align: center;
+}
+
+div {
+    align-items: center;
+    background-color: var(--bg-gray);
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+svg {
+    height: 1.5em;
+    width: 1.5em;
+    fill: white;
+}
+
+input {
+    background: none;
+    border: none;
+    color: var(--text-light-gray);
+    outline: none;
+    width: 100%;
+}
+
+input::placeholder {
+    color: var(--text-zone01-stats);
+    font-family: monospace;
+}
+
+button {
+    background-color: var(--bg-gray);
+    border: none;
+    color: var(--text-dark-gray);
+    cursor: pointer;
+    margin-top: 2vh;
+    outline: none;
+    padding: 0.5em;
+    transition: .25s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--text-zone01-bim);
+    color: var(--text-dark-gray);
+    font-weight: bolder;
+    letter-spacing: .5em;
+}
