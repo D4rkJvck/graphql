@@ -1,6 +1,6 @@
 import { PROFILE_QUERY } from "../graphql/profile.gql.js";
 import { PROFILE_TEMPLATE } from "../templates/aside.html.js";
-import { fetchFromGraphiQL } from "../services/api.js";
+import { fetchFromGraphiQL } from "../services/services.js";
 import { convertXP } from "../utils/format.js";
 
 export default class ProfileSection extends HTMLElement {

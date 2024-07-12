@@ -1,4 +1,4 @@
-import { loginTalent } from "../services/auth.js";
+import { loginTalent } from "../services/services.js";
 import { FORM_TEMPLATE } from "../templates/form.html.js";
 import { HEADER, MAIN } from "../utils/elements.js"
 import ProfileSection from "./aside.js";

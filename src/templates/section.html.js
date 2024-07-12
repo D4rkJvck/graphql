@@ -6,9 +6,9 @@ export const SECTION_TEMPLATE = /* HTML */ `
         <legend>Top Projects (pie)</legend>
     </fieldset>
     <fieldset>
-        <legend>Top Skills (radar)</legend>
+        <legend>Top Skills (polar area)</legend>
     </fieldset>
     <fieldset>
-        <legend></legend>
+        <legend>(bar)</legend>
     </fieldset>
 `
