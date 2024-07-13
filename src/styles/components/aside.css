@@ -25,6 +25,7 @@ fieldset {
     border-radius: var(--rounded-md);
     flex: 1;
     height: 19vh;
+    max-width: 380px;
     min-width: 180px;
     transition: .5s;
 }

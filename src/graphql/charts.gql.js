@@ -1,6 +1,6 @@
 export const TOP_PROJECTS_QUERY = /* GraphQL */ `
   query {
-    xp_view(
+    top_projects: xp_view(
       where: {
         path: { _like: "%/dakar/div-01%" }
       }
@@ -12,16 +12,33 @@ export const TOP_PROJECTS_QUERY = /* GraphQL */ `
     }
   }
 `
+
+//-------------------------------------------------------------------------
+
 export const PROGRESS_QUERY = /* GraphQL */ `
   query {
-    transaction(
+    xp_progress: transaction(
       where: { type: { _eq: "xp" }, eventId: { _eq: 56 } }
-      order_by: { createdAt: desc }
+      order_by: { createdAt: asc }
     ) {
-      createdAt
-      path
+      date: createdAt
       amount
+    }
+  }
+`
+
+//-------------------------------------------------------------------------
+
+export const SKILLS_QUERY = /* GraphQL */ `
+  query {
+    skill: transaction(
+      where: { eventId: { _eq: 56 }, _and: { type: { _like: "skill_%" } } }
+      distinct_on: type
+      order_by: { type: asc, amount: desc }
+    ) {
       type
+      amount
+      path
     }
   }
 `

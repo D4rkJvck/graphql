@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -17,10 +19,15 @@
 }
 
 fieldset {
+    align-items: center;
     background: var(--bg-trans-black);
     border: 1px solid #333;
     border-radius: var(--rounded-md);
-    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    height: 39.75vh;
+    justify-content: center;
+    width: 33.5vw;
 }
 
 fieldset:hover {
@@ -44,7 +51,7 @@ legend {
         flex-wrap: wrap;
         width: 100%;
     }
-    
+
     fieldset {
         flex: 1 1 40vw;
         min-width: 300px;

@@ -36,7 +36,7 @@ export default class ProfileSection extends HTMLElement {
                     xpAmount: data.data.xp_amount.aggregate.sum.amount
                 })
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error('ERROR -> ', err))
     }
 
     #render(data) {

@@ -1,6 +1,6 @@
 import { SECTION_TEMPLATE } from "../templates/section.html.js";
-import { MAIN } from "../utils/elements.js";
 import BarChart from "./charts/bar.js";
+import ProgressAreaChart from "./charts/area.js";
 
 export default class GraphSection extends HTMLElement {
     constructor() {
@@ -14,11 +14,15 @@ export default class GraphSection extends HTMLElement {
         link.href = 'styles/components/section.css';
         this.shadow.appendChild(link);
             
-        // this.query = 
+        this.areaFieldset = this.shadow.querySelector('#area');
+        this.pieFieldset = this.shadow.querySelector('#pie');
+        this.polarFieldset = this.shadow.querySelector('#polar');
+        this.barFieldset = this.shadow.querySelector('#bar');
     }
 
     connectedCallback() {
-        // this.shadow.appendChild(new BarChart([43, 75, 25, 58, 88]))
+        this.areaFieldset.appendChild(new ProgressAreaChart());
+        this.barFieldset.appendChild(new BarChart());
     }
 
     static define(tag = 'graph-section') {

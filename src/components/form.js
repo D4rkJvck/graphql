@@ -24,8 +24,8 @@ export default class LoginForm extends HTMLElement {
     }
 
     #submission() {
-        this.form.onsubmit = (e) => {
-            e.preventDefault()
+        this.form.onsubmit = (event) => {
+            event.preventDefault()
 
             const user = this.form.user.value;
             const password = this.form.password.value;
