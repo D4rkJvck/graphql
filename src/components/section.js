@@ -1,6 +1,7 @@
 import { SECTION_TEMPLATE } from "../templates/section.html.js";
 import BarChart from "./charts/bar.js";
-import ProgressAreaChart from "./charts/area.js";
+import AreaChart from "./charts/area.js";
+import PieChart from "./charts/pie.js";
 
 export default class GraphSection extends HTMLElement {
     constructor() {
@@ -21,7 +22,8 @@ export default class GraphSection extends HTMLElement {
     }
 
     connectedCallback() {
-        this.areaFieldset.appendChild(new ProgressAreaChart());
+        this.areaFieldset.appendChild(new AreaChart());
+        this.pieFieldset.appendChild(new PieChart())
         this.barFieldset.appendChild(new BarChart());
     }
 

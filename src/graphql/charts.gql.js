@@ -3,11 +3,16 @@ export const TOP_PROJECTS_QUERY = /* GraphQL */ `
     top_projects: xp_view(
       where: {
         path: { _like: "%/dakar/div-01%" }
+        _and: [
+          { path: {_nlike: "%checkpoint%" } }
+          { path: { _nlike: "%piscine-js-2%" } }
+          { path: { _nlike: "%piscine-rust%" } }
+        ]
       }
       order_by: { amount: desc }
-      limit: 10
+      limit: 5
     ) {
-      path
+      project: path
       amount
     }
   }

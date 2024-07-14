@@ -2,7 +2,7 @@ import { PROGRESS_QUERY } from '../../graphql/charts.gql.js';
 import { fetchFromGraphiQL } from '../../services/services.js';
 import { formatProgressData } from '../../utils/format.js';
 
-export default class ProgressAreaChart extends HTMLElement {
+export default class AreaChart extends HTMLElement {
     constructor() {
         super();
 
@@ -28,17 +28,13 @@ export default class ProgressAreaChart extends HTMLElement {
     }
     //----------------------------------------------------------------------------
     connectedCallback() {
-
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
                     throw new Error('No data fetched!');
                 }
 
-                this.data = formatProgressData(data.data.xp_progress);
-                
-                console.log(this.data);
-
+                this.data = formatProgressData(data.data.xp_progress, this.oneYearAgo)
                 this.xpAmount = this.data[this.data.length - 1].amount;
 
                 this.#scaling();
@@ -49,14 +45,12 @@ export default class ProgressAreaChart extends HTMLElement {
     }
     //----------------------------------------------------------------------------
     #scaling() {
-
         this.yScale = d3.scaleLinear()
             .domain([0, this.xpAmount])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleUtc()
             .domain(d3.extent(this.data, d => d.date))
-            // .domain([this.oneYearAgo, new Date()])
             .range([this.marginLeft, this.width - this.marginRight]);
     }
     //----------------------------------------------------------------------------
@@ -65,9 +59,9 @@ export default class ProgressAreaChart extends HTMLElement {
         const yAxis = d3.axisLeft(this.yScale)
             .tickFormat(d => {
                 if (d >= 1e6) {
-                    return d3.format('.2s')(d).replace('G', 'B');
+                    return d3.format('.2s')(d).replace('M', ' MB');
                 } else if (d >= 1e3) {
-                    return d3.format('.2s')(d).replace('G', 'M');
+                    return d3.format('.2s')(d).replace('k', ' kB');
                 } else {
                     return d
                 }
@@ -103,4 +97,4 @@ export default class ProgressAreaChart extends HTMLElement {
     }
 }
 
-ProgressAreaChart.define();
+AreaChart.define();

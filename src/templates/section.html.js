@@ -1,9 +1,9 @@
 export const SECTION_TEMPLATE = /* HTML */ `
     <fieldset id="area">
-        <legend>Progress</legend>
+        <legend>XP Progression</legend>
     </fieldset>
     <fieldset id="pie">
-        <legend>Top Projects (pie)</legend>
+        <legend>Top Projects</legend>
     </fieldset>
     <fieldset id="polar">
         <legend>Top Skills (polar area)</legend>
