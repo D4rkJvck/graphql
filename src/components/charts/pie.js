@@ -43,10 +43,10 @@ export default class PieChart extends HTMLElement {
         this.pie = d3.pie()
             .sort(null)
             .value(d => d.amount)
-            .padAngle(0.1);
+            .padAngle(.05);
 
         this.arc = d3.arc()
-            .innerRadius(7.5)
+            .innerRadius(10)
             .outerRadius(Math.min(this.width, this.height) / 2);
 
         const labelRadius = this.arc.outerRadius()() * .7;
@@ -61,6 +61,7 @@ export default class PieChart extends HTMLElement {
     #drawSectors() {
         this.svg.append('g')
                 .attr('stroke', '#00d4a1')
+                .attr('stroke-width', 0.5)
             .selectAll()
             .data(this.arcs)
             .join('path')

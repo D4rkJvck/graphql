@@ -16,7 +16,7 @@ export const PROFILE_TEMPLATE = /* HTML */ `
     <fieldset>
         <legend>Level</legend>
         <figure>
-            <span id="rank">Apprentice Developer</span>
+            <span id="rank"></span>
             <figcaption id="level"></figcaption>
         </figure>
     </fieldset>
