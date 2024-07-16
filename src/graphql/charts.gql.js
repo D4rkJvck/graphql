@@ -36,14 +36,13 @@ export const PROGRESS_QUERY = /* GraphQL */ `
 
 export const SKILLS_QUERY = /* GraphQL */ `
   query {
-    skill: transaction(
+    skills: transaction(
       where: { eventId: { _eq: 56 }, _and: { type: { _like: "skill_%" } } }
       distinct_on: type
       order_by: { type: asc, amount: desc }
     ) {
       type
       amount
-      path
     }
   }
 `

@@ -40,16 +40,13 @@ export default class PieChart extends HTMLElement {
         }
 
     #createLayout() {
-        this.color = d3.scaleOrdinal()
-            .domain(this.data.map(d => d.project))
-            .range(d3.quantize(t => d3.interpolateSpectral(t * .8 + .1), this.data.length).reverse());
-
         this.pie = d3.pie()
             .sort(null)
-            .value(d => d.amount);
+            .value(d => d.amount)
+            .padAngle(0.1);
 
         this.arc = d3.arc()
-            .innerRadius(0)
+            .innerRadius(7.5)
             .outerRadius(Math.min(this.width, this.height) / 2);
 
         const labelRadius = this.arc.outerRadius()() * .7;
@@ -67,7 +64,7 @@ export default class PieChart extends HTMLElement {
             .selectAll()
             .data(this.arcs)
             .join('path')
-                .attr('fill', '#00000000')
+                .attr('fill', '#caadff25')
                 .attr('d', this.arc)
             .append('title')
                 .text(d => d.data.project.toLocaleString('en-US'));
@@ -78,10 +75,12 @@ export default class PieChart extends HTMLElement {
             .data(this.arcs)
             .join('text')
                 .attr('transform', d => `translate(${this.arcLabel.centroid(d)})`)
+                // Project Name Label
                 .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
                     .attr('font-size', '10px')
                     .attr('fill', '#caadff')
                     .text(d => d.data.project))
+                // XP Amount Label
                 .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
                     .attr('font-size', '10px')
                     .attr('fill', '#fff')

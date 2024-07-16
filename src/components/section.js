@@ -2,6 +2,7 @@ import { SECTION_TEMPLATE } from "../templates/section.html.js";
 import BarChart from "./charts/bar.js";
 import AreaChart from "./charts/area.js";
 import PieChart from "./charts/pie.js";
+import RadarChart from "./charts/radar.js";
 
 export default class GraphSection extends HTMLElement {
     constructor() {
@@ -17,13 +18,14 @@ export default class GraphSection extends HTMLElement {
             
         this.areaFieldset = this.shadow.querySelector('#area');
         this.pieFieldset = this.shadow.querySelector('#pie');
-        this.polarFieldset = this.shadow.querySelector('#polar');
+        this.radarFieldset = this.shadow.querySelector('#radar');
         this.barFieldset = this.shadow.querySelector('#bar');
     }
 
     connectedCallback() {
         this.areaFieldset.appendChild(new AreaChart());
-        this.pieFieldset.appendChild(new PieChart())
+        this.pieFieldset.appendChild(new PieChart());
+        this.radarFieldset.appendChild(new RadarChart());
         this.barFieldset.appendChild(new BarChart());
     }
 

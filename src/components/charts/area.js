@@ -46,7 +46,7 @@ export default class AreaChart extends HTMLElement {
     //----------------------------------------------------------------------------
     #scaling() {
         this.yScale = d3.scaleLinear()
-            .domain([0, this.xpAmount])
+            .domain([0, this.xpAmount * 1.2])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleUtc()
@@ -86,10 +86,19 @@ export default class AreaChart extends HTMLElement {
             .y0(this.height - this.marginBottom)
             .y1(d => this.yScale(d.amount));
 
+        const line = d3.line()
+            .x(d => this.xScale(d.date))
+            .y(d => this.yScale(d.amount));
+
+        this.svg.append('path')
+            .attr('fill', '#caadff25')
+            .attr('d', area(this.data));
+
+        // Overlay Line on Area
         this.svg.append('path')
             .attr('fill', 'none')
-            .attr('d', area(this.data))
-            .attr('stroke', '#00d4a1');
+            .attr('d', line(this.data))
+            .attr('stroke', '#00d4a1')
     }
     //----------------------------------------------------------------------------
     static define(tag = 'progress-line-chart') {
