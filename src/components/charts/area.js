@@ -84,11 +84,13 @@ export default class AreaChart extends HTMLElement {
         const area = d3.area()
             .x(d => this.xScale(d.date))
             .y0(this.height - this.marginBottom)
-            .y1(d => this.yScale(d.amount));
+            .y1(d => this.yScale(d.amount))
+            .curve(d3.curveCardinal)
 
         const line = d3.line()
             .x(d => this.xScale(d.date))
-            .y(d => this.yScale(d.amount));
+            .y(d => this.yScale(d.amount))
+            .curve(d3.curveCardinal);
 
         this.svg.append('path')
             .attr('fill', '#caadff25')

@@ -6,7 +6,7 @@ export const SECTION_TEMPLATE = /* HTML */ `
         <legend>Top Projects</legend>
     </fieldset>
     <fieldset id="radar">
-        <legend>Skills</legend>
+        <legend>Top Skills</legend>
     </fieldset>
     <fieldset id="bar">
         <legend>(bar)</legend>

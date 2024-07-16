@@ -33,7 +33,9 @@ export default class RadarChart extends HTMLElement {
                         d.type = d.type.slice(d.type.indexOf('_') + 1);
                         return d
                     })
-                    // .sort((a, b) => b.amount - a.amount);
+                    .sort((a, b) => b.amount - a.amount)
+                    .slice(0, 10)
+                    .sort((a, b) => a.type.localeCompare(b.type));
 
                 this.#scaling();
                 this.#createLayout();
@@ -96,14 +98,14 @@ export default class RadarChart extends HTMLElement {
     #drawRadar() {
         const radarLine = d3.lineRadial()
             .radius(d => this.scale(d.amount))
-            .angle((d, i) => i * this.angleSlice);
+            .angle((d, i) => i * this.angleSlice)
+            .curve(d3.curveCardinalClosed);
 
         const radarGroup = this.svg.append('g')
-            .attr('class', 'radar-group')
             .attr('transform', `translate(${this.width / 2}, ${this.height / 2})`);
 
         radarGroup.append('path')
-            .datum([...this.data, this.data[0]])
+            .datum(this.data)
             .attr('d', radarLine)
             .attr('fill', '#caadff25')
             .attr('stroke', '#00d4a1')

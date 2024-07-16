@@ -43,10 +43,10 @@ export default class PieChart extends HTMLElement {
         this.pie = d3.pie()
             .sort(null)
             .value(d => d.amount)
-            .padAngle(.05);
+            .padAngle(.075);
 
         this.arc = d3.arc()
-            .innerRadius(10)
+            .innerRadius(15)
             .outerRadius(Math.min(this.width, this.height) / 2);
 
         const labelRadius = this.arc.outerRadius()() * .7;
