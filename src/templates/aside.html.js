@@ -23,7 +23,7 @@ export const PROFILE_TEMPLATE = /* HTML */ `
     <fieldset>
         <legend class="color-change">Audits Ratio</legend>
         <figure>
-            <figcaption class="color-change" id="audit"></figcaption>
+            <figcaption id="audit"></figcaption>
             <hr>
             <span id="audit-ratio"></span>
         </figure>

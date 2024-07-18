@@ -3,6 +3,7 @@ import { PROFILE_TEMPLATE } from "../templates/aside.html.js";
 import { fetchFromGraphiQL } from "../services/services.js";
 import { convertXP } from "../utils/format.js";
 import DonutChart from "./charts/donut.js";
+import { ratioColor } from "../utils/elements.js";
 
 export default class ProfileSection extends HTMLElement {
     constructor() {
@@ -43,12 +44,15 @@ export default class ProfileSection extends HTMLElement {
     #render(data) {
         const loginLegend = this.shadow.querySelector('#login');
         const userFigcaption = this.shadow.querySelector('#user');
+
         const xpFigcaption = this.shadow.querySelector('#xp-amount');
         const xpText = this.shadow.querySelector('#xp-unit');
+
         const levelFigcaption = this.shadow.querySelector('#level');
         const auditFigcaption = this.shadow.querySelector('#audit');
-        const auditRatio = this.shadow.querySelector('#audit-ratio') ;
-        const result = convertXP(data.xpAmount);
+        const auditRatio = this.shadow.querySelector('#audit-ratio');
+
+        const fmt = convertXP(data.xpAmount);
 
         loginLegend.innerText = data.login;
         userFigcaption.innerHTML = /* HTML */ `
@@ -58,9 +62,20 @@ export default class ProfileSection extends HTMLElement {
             <span id="last-name">
                 ${data.lastName}
             </span>`;
-        xpFigcaption.innerText = result.value;
-        xpText.innerText = result.unit;
+
+        xpFigcaption.innerText = fmt.value;
+        xpText.innerText = fmt.unit;
+
         levelFigcaption.innerText = data.level;
+
+        // Audit Text Color and Size depending on Value
+        auditFigcaption.parentNode.parentNode.addEventListener('mouseover', () => {
+            auditFigcaption.style.color = ratioColor(data.auditRatio);
+        })
+        auditFigcaption.parentNode.parentNode.addEventListener('mouseout', () => {
+            auditFigcaption.style.color = 'inherit'
+        })
+        
         auditFigcaption.innerText = data.auditRatio;
         auditRatio.appendChild(new DonutChart());
     }

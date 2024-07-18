@@ -1,6 +1,6 @@
 import { PROGRESS_QUERY } from '../../graphql/charts.gql.js';
 import { fetchFromGraphiQL } from '../../services/services.js';
-import { formatProgressData } from '../../utils/format.js';
+import { xpByMonth } from '../../utils/format.js';
 
 export default class AreaChart extends HTMLElement {
     constructor() {
@@ -34,7 +34,17 @@ export default class AreaChart extends HTMLElement {
                     throw new Error('No data fetched!');
                 }
 
-                this.data = formatProgressData(data.data.xp_progress, this.oneYearAgo)
+                const xpTab = xpByMonth(data.data.xp_progress);
+
+                // Accumulate XP
+                xpTab.forEach((d, i) => {
+                        if (i > 0) {
+                            d.amount += xpTab[i - 1].amount;
+                        }
+                    })
+
+                // Filter Time Interval
+                this.data = xpTab.filter(d => d.date >= this.oneYearAgo);
                 this.xpAmount = this.data[this.data.length - 1].amount;
 
                 this.#scaling();

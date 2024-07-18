@@ -1,3 +1,7 @@
+import { PROGRESS_QUERY } from "../../graphql/charts.gql.js";
+import { fetchFromGraphiQL } from "../../services/services.js";
+import { xpByMonth } from "../../utils/format.js";
+
 export default class BarChart extends HTMLElement {
     constructor() {
         super();
@@ -19,13 +23,26 @@ export default class BarChart extends HTMLElement {
             .append('svg')
             .attr('viewBox', `0 0 ${this.width} ${this.height}`)
             .attr('preserveAspectRatio', 'xMidYMid meet');
+
+        this.query = PROGRESS_QUERY;
+        this.oneYearAgo = new Date(new Date() - 31536000000);
     }
 
     connectedCallback() {
-        this.xpMax = 147000
-        this.#scaling();
-        this.#drawAxis();
-        this.#drawBars();
+        fetchFromGraphiQL(this.query)
+            .then(data => {
+                if (!data) {
+                    throw new Error('ERROR: Data not fectched')
+                }
+
+                const xpTab = xpByMonth(data.data.xp_progress);
+                this.data = xpTab.filter(d => d.date >= this.oneYearAgo);
+
+                this.#scaling();
+                this.#drawAxis();
+                this.#drawBars();
+            })
+            .catch(error => console.log(error))
     }
 
     #scaling() {
@@ -51,15 +68,15 @@ export default class BarChart extends HTMLElement {
                 }
             });
 
+        this.svg.append('g')
+        .attr('transform', `translate(${this.marginLeft}, 0)`)
+        .call(yAxis);
+        
+        // Add Y Grid Lines
         const yGridLines = d3.axisLeft(this.yScale)
             .tickSize(- this.width + this.marginLeft + this.marginRight)
             .tickFormat('');
 
-        this.svg.append('g')
-            .attr('transform', `translate(${this.marginLeft}, 0)`)
-            .call(yAxis);
-
-        // Add Y Grid Lines
         this.svg.append('g')
             .attr('transform', `translate(${this.marginLeft}, 0)`)
             .call(yGridLines)
@@ -69,15 +86,16 @@ export default class BarChart extends HTMLElement {
 
         // Draw X Axis
         const xAxis = d3.axisBottom(this.xScale);
+        
+        this.svg.append('g')
+        .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
+        .call(xAxis);
+        
+        // Add X Grid Lines
         const xGridLines = d3.axisBottom(this.xScale)
             .tickSize(- this.height + this.marginBottom + this.marginTop)
             .tickFormat('');
 
-        this.svg.append('g')
-            .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
-            .call(xAxis);
-
-        // Add X Grid Lines
         this.svg.append('g')
             .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
             .call(xGridLines)
@@ -87,7 +105,15 @@ export default class BarChart extends HTMLElement {
     }
 
     #drawBars() {
-
+        this.svg.append('g')
+                .attr('fill', '#caadff25')
+            .selectAll()
+            .data(this.data)
+            .join('rect')
+                .attr('x', d => x(d.date))
+                .attr('y', d => y(d.amount))
+                .attr('height', y(0) - y(d.amount))
+                .attr('width', x.bandwith())
     }
 
     static define(tag = 'bar-chart') {

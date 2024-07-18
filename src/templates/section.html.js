@@ -9,6 +9,6 @@ export const SECTION_TEMPLATE = /* HTML */ `
         <legend>Top Skills</legend>
     </fieldset>
     <fieldset id="bar">
-        <legend>(bar)</legend>
+        <legend>XP per Month</legend>
     </fieldset>
 `
