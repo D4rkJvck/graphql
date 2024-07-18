@@ -46,7 +46,7 @@ export default class AreaChart extends HTMLElement {
     //----------------------------------------------------------------------------
     #scaling() {
         this.yScale = d3.scaleLinear()
-            .domain([0, this.xpAmount * 1.2])
+            .domain([0, this.xpAmount])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleUtc()
@@ -71,13 +71,45 @@ export default class AreaChart extends HTMLElement {
             .attr('transform', `translate(${this.marginLeft}, 0)`)
             .call(yAxis);
 
+        // Add Y Grid Lines
+        const yGridLines = d3.axisLeft(this.yScale)
+            .tickSize(- this.width + this.marginLeft + this.marginRight)
+            .tickFormat('');
+
+        this.svg.append('g')
+            .attr('transform', `translate(${this.marginLeft}, 0)`)
+            .call(yGridLines)
+            .selectAll('line')
+            .attr('stroke', '#777')
+            .attr('stroke-width', .25)
+        
+        this.svg.append('text')
+            .attr('x', this.marginLeft + 50)
+            .attr('y', this.marginTop)
+            .attr('dy', '-0.5em')
+            .attr('text-anchor', 'end')
+            .attr('fill', '#00d4a1')
+            .text(d3.format('.3s')(this.xpAmount).replace('k', 'kB').replace('M', 'MB'));
+
         // Draw X Axis
         const xAxis = d3.axisBottom(this.xScale)
-            .tickFormat(d3.timeFormat('%b'))
+            .tickFormat(d3.timeFormat('%b'));
 
         this.svg.append('g')
             .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
             .call(xAxis);
+
+        // Add X Grid Lines
+        const xGridLines = d3.axisBottom(this.xScale)
+            .tickSize(- this.width + this.marginBottom + this.marginTop)
+            .tickFormat('');
+
+        this.svg.append('g')
+            .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
+            .call(xGridLines)
+            .selectAll('line')
+            .attr('stroke', '#777')
+            .attr('stroke-width', .25)
     }
     //----------------------------------------------------------------------------
     #drawArea() {

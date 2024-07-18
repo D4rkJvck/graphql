@@ -2,6 +2,7 @@ import { PROFILE_QUERY } from "../graphql/profile.gql.js";
 import { PROFILE_TEMPLATE } from "../templates/aside.html.js";
 import { fetchFromGraphiQL } from "../services/services.js";
 import { convertXP } from "../utils/format.js";
+import DonutChart from "./charts/donut.js";
 
 export default class ProfileSection extends HTMLElement {
     constructor() {
@@ -46,11 +47,14 @@ export default class ProfileSection extends HTMLElement {
         const xpText = this.shadow.querySelector('#xp-unit');
         const levelFigcaption = this.shadow.querySelector('#level');
         const auditFigcaption = this.shadow.querySelector('#audit');
+        const auditRatio = this.shadow.querySelector('#audit-ratio') ;
         const result = convertXP(data.xpAmount);
 
         loginLegend.innerText = data.login;
         userFigcaption.innerHTML = /* HTML */ `
-            ${data.firstName}
+            <span id="first-name">
+                ${data.firstName}
+            </span>
             <span id="last-name">
                 ${data.lastName}
             </span>`;
@@ -58,6 +62,7 @@ export default class ProfileSection extends HTMLElement {
         xpText.innerText = result.unit;
         levelFigcaption.innerText = data.level;
         auditFigcaption.innerText = data.auditRatio;
+        auditRatio.appendChild(new DonutChart());
     }
 
     static define(tag = 'profile-section') {

@@ -20,3 +20,12 @@ export const PROFILE_QUERY = /* GraphQL */ `
     }
   }
 `
+
+export const AUDIT_QUERY = /* GraphQL */ `
+  query {
+    audit: user {
+      done: totalUp
+      received: totalDown
+    }
+  }
+`

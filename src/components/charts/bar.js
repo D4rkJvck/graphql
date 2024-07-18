@@ -1,7 +1,7 @@
 export default class BarChart extends HTMLElement {
     constructor() {
         super();
-        
+
         this.style.height = '90%';
         this.style.width = '95%';
         this.style.display = 'flex';
@@ -51,20 +51,43 @@ export default class BarChart extends HTMLElement {
                 }
             });
 
+        const yGridLines = d3.axisLeft(this.yScale)
+            .tickSize(- this.width + this.marginLeft + this.marginRight)
+            .tickFormat('');
+
         this.svg.append('g')
             .attr('transform', `translate(${this.marginLeft}, 0)`)
             .call(yAxis);
-        
+
+        // Add Y Grid Lines
+        this.svg.append('g')
+            .attr('transform', `translate(${this.marginLeft}, 0)`)
+            .call(yGridLines)
+            .selectAll('line')
+            .attr('stroke', '#777')
+            .attr('stroke-width', .25);
+
         // Draw X Axis
         const xAxis = d3.axisBottom(this.xScale);
+        const xGridLines = d3.axisBottom(this.xScale)
+            .tickSize(- this.height + this.marginBottom + this.marginTop)
+            .tickFormat('');
 
         this.svg.append('g')
             .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
             .call(xAxis);
+
+        // Add X Grid Lines
+        this.svg.append('g')
+            .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
+            .call(xGridLines)
+            .selectAll('line')
+            .attr('stroke', '#777')
+            .attr('stroke-width', .25);
     }
 
     #drawBars() {
-        
+
     }
 
     static define(tag = 'bar-chart') {

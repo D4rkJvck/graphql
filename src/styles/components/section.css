@@ -31,13 +31,17 @@ fieldset {
 }
 
 fieldset:hover {
-    border: 2px solid var(--text-zone01-stats);
+    border: 2px solid var(--text-zone01-stats); 
 }
 
-fieldset:hover * {
+fieldset:hover legend {
     color: var(--text-zone01-bim);
 }
 
+/* fieldset:active {
+    background: #000000ee;
+    transform: scale(1.5);
+} */
 
 legend {
     color: var(--text-zone01-stats);

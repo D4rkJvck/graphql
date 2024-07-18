@@ -15,10 +15,10 @@ export default class PieChart extends HTMLElement {
         this.height = 272;
 
         this.svg = d3.select(this).append('svg')
-            .attr('viewBox', `-228 -136 ${this.width} ${this.height}`)
-            .attr('preserveAspectRatio', 'xMidYMid meet');
+            .attr('viewBox', [- this.width / 2, - this.height / 2, this.width, this.height])
+            .attr('preserveAspectRatio', 'xMidYMid meet')
 
-        this.query = TOP_PROJECTS_QUERY;
+            this.query = TOP_PROJECTS_QUERY;
     }
 
     connectedCallback() {
@@ -37,16 +37,16 @@ export default class PieChart extends HTMLElement {
                 this.#drawSectors()
             })
             .catch(error => console.error('ERROR: ', error))
-        }
+    }
 
     #createLayout() {
         this.pie = d3.pie()
             .sort(null)
             .value(d => d.amount)
-            .padAngle(.075);
+            .padAngle(.05);
 
         this.arc = d3.arc()
-            .innerRadius(15)
+            .innerRadius(10)
             .outerRadius(Math.min(this.width, this.height) / 2);
 
         const labelRadius = this.arc.outerRadius()() * .7;
@@ -60,37 +60,37 @@ export default class PieChart extends HTMLElement {
 
     #drawSectors() {
         this.svg.append('g')
-                .attr('stroke', '#00d4a1')
-                .attr('stroke-width', 0.5)
+            .attr('stroke', '#00d4a1')
+            .attr('stroke-width', 0.5)
             .selectAll()
             .data(this.arcs)
             .join('path')
-                .attr('fill', '#caadff25')
-                .attr('d', this.arc)
+            .attr('fill', '#caadff25')
+            .attr('d', this.arc)
             .append('title')
-                .text(d => d.data.project.toLocaleString('en-US'));
-            
+            .text(d => d.data.project.toLocaleString('en-US'));
+
         this.svg.append('g')
-                .attr('text-anchor', 'middle')
+            .attr('text-anchor', 'middle')
             .selectAll()
             .data(this.arcs)
             .join('text')
-                .attr('transform', d => `translate(${this.arcLabel.centroid(d)})`)
-                // Project Name Label
-                .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
-                    .attr('font-size', '10px')
-                    .attr('fill', '#caadff')
-                    .text(d => d.data.project))
-                // XP Amount Label
-                .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
-                    .attr('font-size', '10px')
-                    .attr('fill', '#fff')
-                    .attr('x', 0)
-                    .attr('y', '1.25em')
-                    .text(d => {
-                        const fmt = convertXP(d.data.amount);
-                        return `${fmt.value} ${fmt.unit}`
-                    }));
+            .attr('transform', d => `translate(${this.arcLabel.centroid(d)})`)
+            // Project Name Label
+            .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
+                .attr('font-size', '10px')
+                .attr('fill', '#caadff')
+                .text(d => d.data.project))
+            // XP Amount Label
+            .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append('tspan')
+                .attr('font-size', '10px')
+                .attr('fill', '#fff')
+                .attr('x', 0)
+                .attr('y', '1.25em')
+                .text(d => {
+                    const fmt = convertXP(d.data.amount);
+                    return `${fmt.value} ${fmt.unit}`
+                }));
 
     }
 

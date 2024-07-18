@@ -1,10 +1,17 @@
-* {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-:host, fieldset, figure, figcaption, #xp-unit, #rank {
+:host,
+fieldset,
+figure,
+figcaption,
+#xp-unit,
+#rank {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
@@ -25,7 +32,7 @@ fieldset {
     border-radius: var(--rounded-md);
     flex: 1;
     height: 19vh;
-    max-width: 380px;
+    /* max-width: 380px; */
     min-width: 180px;
     transition: .5s;
 }
@@ -35,7 +42,7 @@ fieldset:hover {
     transform: scale(1.1);
 }
 
-fieldset:hover * {
+fieldset:hover .color-change {
     color: var(--text-zone01-bim);
 }
 
@@ -47,18 +54,14 @@ figure {
     width: 100%;
 }
 
-svg, #xp-unit, #rank {
+span:not(#first-name, #last-name) {
+    align-items: center;
     border: 1px solid var(--text-dark-gray);
-    border-radius: 50%;
-    height: 7.5vw;
-    width: 7.5vw;
-}
-
-#last-name {
-    font-size: var(--text-base);
-    font-weight: bolder;
-    text-align: left;
-    width: 100%;
+    /* border-radius: 50%; */
+    display: flex;
+    height: 75%;
+    justify-content: center;
+    width: 40%;
 }
 
 legend {
@@ -68,8 +71,8 @@ legend {
 }
 
 figcaption {
-    /* margin: 0 1vw; */
-    width: fit-content;
+    height: 75%;
+    width: 40%;
 }
 
 #user {
@@ -78,11 +81,25 @@ figcaption {
     text-align: left;
 }
 
-#xp-unit {
-    font-size: var(--text-xxl);
+#first-name, #last-name {
+    text-align: left;
+    width: 100%;
 }
 
-#audit, #level, #xp-amount {
+#last-name {
+    font-size: var(--text-base);
+    font-weight: bolder;
+}
+
+#xp-unit {
+    color: var(--text-zone01-stats);
+    /* font-size: calc(var(--text-xxl) * 1.5); */
+}
+
+#audit,
+#level,
+#xp-amount,
+#xp-unit {
     font-size: calc(var(--text-xxl) * 1.5);
     text-align: center;
 }
@@ -92,23 +109,32 @@ figcaption {
     text-align: center;
 }
 
-/* #user-icon {
-    height: 8vh;
-} */
+hr {
+    height: 75%;
+    border: 1px solid #333;
+    width: 0;
+}
 
 @media screen and (max-width: 900px) {
     :host {
         min-height: 20vh;
         width: 100%;
     }
-    
+
     fieldset {
         height: 20vh;
         /* width: 21.5vw; */
     }
-                    
-    #user, #last-name {
-        text-align: center;
-        width: 100%;
+}
+
+@media screen and (max-width: 830px) {
+    fieldset {
+        min-width: 30vw;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    fieldset {
+        min-width: 180px;
     }
 }

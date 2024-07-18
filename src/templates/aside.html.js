@@ -1,30 +1,31 @@
 export const PROFILE_TEMPLATE = /* HTML */ `
     <fieldset>
-        <legend id="login">Login</legend>
+        <legend class="color-change" id="login">Login</legend>
         <figure>
-            <svg></svg>
-            <figcaption id="user"><span></span></figcaption>
+            <span id="profile"></span>
+            <figcaption class="color-change" id="user"></figcaption>
         </figure>
     </fieldset>
     <fieldset>
-        <legend>XP</legend>
+        <legend class="color-change">XP</legend>
         <figure>
-            <figcaption id="xp-amount"></figcaption>
+            <figcaption class="color-change" id="xp-amount"></figcaption>
             <span id="xp-unit"></sp>
         </figure>
     </fieldset>
     <fieldset>
-        <legend>Level</legend>
+        <legend class="color-change">Level</legend>
         <figure>
             <span id="rank"></span>
-            <figcaption id="level"></figcaption>
+            <figcaption class="color-change" id="level"></figcaption>
         </figure>
     </fieldset>
     <fieldset>
-        <legend>Audit</legend>
+        <legend class="color-change">Audits Ratio</legend>
         <figure>
-            <figcaption id="audit"></figcaption>
-            <svg></svg>
+            <figcaption class="color-change" id="audit"></figcaption>
+            <hr>
+            <span id="audit-ratio"></span>
         </figure>
     </fieldset>
 `;
