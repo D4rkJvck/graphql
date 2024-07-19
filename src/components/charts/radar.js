@@ -84,12 +84,12 @@ export default class RadarChart extends HTMLElement {
             
             // Add Labels
             radialGrid.append('text')
-                .attr('x', x * 1.1)
+                .attr('x', x * 1.3)
                 .attr('y', y * 1.1)
                 .attr('dy', '0.35em')
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#caadff')
-                .attr('font-size', '10px')
+                .attr('font-size', '12px')
                 .text(d.type)
         });
 

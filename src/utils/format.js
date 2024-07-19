@@ -6,17 +6,20 @@ export const convertXP = xp => {
         case xp < kB:
             return {
                 value: xp,
-                unit: 'B'
+                unit: 'B',
+                fmt: `${xp} B`
             }
         case xp < MB:
             return {
                 value: Math.round(xp / kB),
-                unit: 'kB'
+                unit: 'kB',
+                fmt: `${Math.round(xp / kB)} kB`
             }
         default:
             return {
                 value: (xp / MB).toFixed(2),
-                unit: 'MB'
+                unit: 'MB',
+                fmt: `${(xp / MB).toFixed(2)} MB`
             }
     }
 }

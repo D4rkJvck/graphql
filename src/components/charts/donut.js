@@ -1,6 +1,6 @@
 import { AUDIT_QUERY } from "../../graphql/profile.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
-import { ratioColor } from "../../utils/elements.js";
+import { getRatioColor } from "../../utils/extract.js";
 
 export default class DonutChart extends HTMLElement {
     constructor() {
@@ -53,7 +53,7 @@ export default class DonutChart extends HTMLElement {
             .selectAll()
             .data(this.arcs)
             .join('path')
-            .attr('fill', (d, i) => ratioColor(d.value, i))
+            .attr('fill', (d, i) => getRatioColor(d.value, i))
             .attr('d', this.arc)
             .append('title')
             .text(d => Object.keys(d.data).map(key => `${key}: ${d.data[key]}`).join(', '))

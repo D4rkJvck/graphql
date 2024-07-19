@@ -37,7 +37,9 @@ Click on badges to get to the code...
 
 ### API & Auth
 
-[![GRAPHQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)](src/graphql/)
+Click on badges to get to the code...
+
+[![GRAPHQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)](src/graphql/profile.gql.js)
 [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](src/components/form.js)
 
 ### Development
@@ -76,7 +78,15 @@ $ cd graphql/
     |     |     |
     |     |     + -- charts/
     |     |     |     |
+    |     |     |     + -- area.js
+    |     |     |     |
     |     |     |     + -- bar.js
+    |     |     |     |
+    |     |     |     + -- donut.js
+    |     |     |     |
+    |     |     |     + -- pie.js
+    |     |     |     |
+    |     |     |     + -- radar.js
     |     |     |
     |     |     + -- aside.js
     |     |     |
@@ -125,6 +135,8 @@ $ cd graphql/
     |     + -- utils/
     |     |     |
     |     |     + -- elements.js
+    |     |     |
+    |     |     + -- extract.js
     |     |     |
     |     |     + -- format.js
     |     |

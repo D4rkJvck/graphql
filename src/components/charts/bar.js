@@ -1,6 +1,6 @@
 import { PROGRESS_QUERY } from "../../graphql/charts.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
-import { xpByMonth } from "../../utils/format.js";
+import { convertXP, xpByMonth } from "../../utils/format.js";
 
 export default class BarChart extends HTMLElement {
     constructor() {
@@ -17,7 +17,6 @@ export default class BarChart extends HTMLElement {
         this.marginRight = 20;
         this.marginBottom = 30;
         this.marginLeft = 50;
-
 
         this.svg = d3.select(this)
             .append('svg')
@@ -47,12 +46,13 @@ export default class BarChart extends HTMLElement {
 
     #scaling() {
         this.yScale = d3.scaleLinear()
-            .domain([0, this.xpMax])
+            .domain([0, d3.max(this.data, d => d.amount) * 1.2])
             .range([this.height - this.marginBottom, this.marginTop]);
 
-        this.xScale = d3.scaleLinear()
-            .domain([0, 10])
-            .range([this.marginLeft, this.width - this.marginRight]);
+        this.xScale = d3.scaleBand()
+            .domain(this.data.map(d => d.date))
+            .range([this.marginLeft, this.width - this.marginRight])
+            .paddingInner(.25);
     }
 
     #drawAxis() {
@@ -60,18 +60,18 @@ export default class BarChart extends HTMLElement {
         const yAxis = d3.axisLeft(this.yScale)
             .tickFormat(d => {
                 if (d >= 1e6) {
-                    return d3.format('.2s')(d).replace('G', 'B')
+                    return d3.format('.2s')(d).replace('M', ' MB')
                 } else if (d >= 1e3) {
-                    return d3.format('.2s')(d).replace('G', 'M')
+                    return d3.format('.2s')(d).replace('k', ' kB')
                 } else {
                     return d
                 }
             });
 
         this.svg.append('g')
-        .attr('transform', `translate(${this.marginLeft}, 0)`)
-        .call(yAxis);
-        
+            .attr('transform', `translate(${this.marginLeft}, 0)`)
+            .call(yAxis);
+
         // Add Y Grid Lines
         const yGridLines = d3.axisLeft(this.yScale)
             .tickSize(- this.width + this.marginLeft + this.marginRight)
@@ -82,15 +82,16 @@ export default class BarChart extends HTMLElement {
             .call(yGridLines)
             .selectAll('line')
             .attr('stroke', '#777')
-            .attr('stroke-width', .25);
+            .attr('stroke-width', .15);
 
         // Draw X Axis
-        const xAxis = d3.axisBottom(this.xScale);
-        
+        const xAxis = d3.axisBottom(this.xScale)
+            .tickFormat(d3.timeFormat('%b'));
+
         this.svg.append('g')
-        .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
-        .call(xAxis);
-        
+            .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
+            .call(xAxis);
+
         // Add X Grid Lines
         const xGridLines = d3.axisBottom(this.xScale)
             .tickSize(- this.height + this.marginBottom + this.marginTop)
@@ -101,19 +102,31 @@ export default class BarChart extends HTMLElement {
             .call(xGridLines)
             .selectAll('line')
             .attr('stroke', '#777')
-            .attr('stroke-width', .25);
+            .attr('stroke-width', .15);
     }
 
     #drawBars() {
         this.svg.append('g')
-                .attr('fill', '#caadff25')
+            .attr('fill', '#caadff25')
             .selectAll()
             .data(this.data)
             .join('rect')
-                .attr('x', d => x(d.date))
-                .attr('y', d => y(d.amount))
-                .attr('height', y(0) - y(d.amount))
-                .attr('width', x.bandwith())
+            .attr('stroke', '#00d4a1')
+            .attr('stroke-width', 0.5)
+            .attr('x', d => this.xScale(d.date))
+            .attr('y', d => this.yScale(d.amount))
+            .attr('height', d => this.yScale(0) - this.yScale(d.amount))
+            .attr('width', this.xScale.bandwidth())
+
+        // Add Labels
+        // this.svg.selectAll('text')
+        //     .data(this.data)
+        //     .join('text')
+        //     .attr('x', d => this.xScale(d.date) + this.xScale.bandwidth() / 2)
+        //     .attr('y', d => this.yScale(d.amount) - 5)
+        //     .attr('text-anchor', 'middle')
+        //     .text(d => convertXP(d.amount).fmt);
+
     }
 
     static define(tag = 'bar-chart') {
@@ -121,4 +134,4 @@ export default class BarChart extends HTMLElement {
     }
 }
 
-BarChart.define()
+BarChart.define();
