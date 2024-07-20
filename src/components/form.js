@@ -12,6 +12,7 @@ export default class LoginForm extends HTMLElement {
 
         this.shadow.innerHTML = FORM_TEMPLATE;
         this.form = this.shadow.querySelector('form');
+        this.alert = this.shadow.querySelector('p');
 
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -38,17 +39,21 @@ export default class LoginForm extends HTMLElement {
 
             loginTalent(credentials)
                 .then(token => {
-                    if (token) {
-                        localStorage.setItem('jwtToken', token);
-                        this.remove();
-                        HEADER.appendChild(new NavBar);
-                        MAIN.append(
-                            new ProfileSection,
-                            new GraphSection
-                        );
+                    if (!token) {
+                        throw new Error('Invalid Credentials')
                     };
+
+                    localStorage.setItem('jwtToken', token);
+                    this.remove();
+                    HEADER.appendChild(new NavBar);
+                    MAIN.append(
+                        new ProfileSection,
+                        new GraphSection
+                    );
                 })
-                .catch((error) => alert(error)); // TODO: Appropriate Alert !
+                .catch((error) => {
+                    this.alert.innerText = error;
+                });
         }
     }
 

@@ -12,7 +12,7 @@ export const loginTalent = async credentials => {
             }
             return response.json()
         })
-        .catch((error) => console.log('ERROR: ', error))
+        .catch(error => console.log(error))
 }
 
 //------------------------------------------------------------------------------
@@ -36,5 +36,5 @@ export const fetchFromGraphiQL = async query => {
             }
             return response.json()
         })
-        .catch(error => console.log('ERROR: ', error))
+        .catch(error => console.log(error))
 }

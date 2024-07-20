@@ -1,6 +1,10 @@
-* {
+*,
+*::after,
+*::before {
     border-radius: var(--rounded-md);
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 form {
@@ -21,8 +25,7 @@ form:hover * {
     color: var(--text-zone01-bim);
 }
 
-p {
-    font-size: var(--text-lg);
+h2 {
     font-weight: bolder;
     text-align: center;
 }
@@ -46,6 +49,7 @@ svg {
 input {
     background: none;
     border: none;
+    border-radius: 0;
     color: var(--text-light-gray);
     outline: none;
     width: 100%;
@@ -56,12 +60,17 @@ input::placeholder {
     font-family: monospace;
 }
 
+p {
+    color: var(--text-zone01-snap) !important;
+    height: fit-content;
+    text-align: center;
+}
+
 button {
     background-color: var(--bg-gray);
     border: none;
     color: var(--text-dark-gray);
     cursor: pointer;
-    margin-top: 2vh;
     outline: none;
     padding: 0.5em;
     transition: .25s ease-in-out;

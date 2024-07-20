@@ -126,7 +126,6 @@ export default class BarChart extends HTMLElement {
         //     .attr('y', d => this.yScale(d.amount) - 5)
         //     .attr('text-anchor', 'middle')
         //     .text(d => convertXP(d.amount).fmt);
-
     }
 
     static define(tag = 'bar-chart') {

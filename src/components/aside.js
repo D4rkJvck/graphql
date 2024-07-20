@@ -3,7 +3,7 @@ import { PROFILE_TEMPLATE } from "../templates/aside.html.js";
 import { fetchFromGraphiQL } from "../services/services.js";
 import { convertXP } from "../utils/format.js";
 import DonutChart from "./charts/donut.js";
-import { getRatioColor, getRank } from "../utils/utils.js";
+import { getRatioColor, getRank } from "../utils/extract.js";
 
 export default class ProfileSection extends HTMLElement {
     constructor() {
