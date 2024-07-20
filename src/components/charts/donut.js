@@ -21,7 +21,8 @@ export default class DonutChart extends HTMLElement {
 
         this.query = AUDIT_QUERY;
     }
-
+    //_________________________________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -35,7 +36,8 @@ export default class DonutChart extends HTMLElement {
                 this.#drawSectors();
             })
     }
-
+    //____________________________________________________________
+    //
     #createLayout() {
         this.pie = d3.pie()
             .value(d => d)
@@ -47,7 +49,8 @@ export default class DonutChart extends HTMLElement {
 
         this.arcs = this.pie(this.data)
     }
-
+    //_______________________________________________________________________________________
+    //
     #drawSectors() {
         this.svg.append('g')
             .selectAll()
@@ -59,7 +62,8 @@ export default class DonutChart extends HTMLElement {
             .text(d => Object.keys(d.data).map(key => `${key}: ${d.data[key]}`).join(', '))
 
     }
-
+    //_______________________________________________________________________________________
+    //
     static define(tag = 'donut-chart') {
         customElements.define(tag, this);
     }

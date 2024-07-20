@@ -26,7 +26,8 @@ export default class AreaChart extends HTMLElement {
         this.query = PROGRESS_QUERY;
         this.oneYearAgo = new Date(new Date() - 31536000000);
     }
-    //----------------------------------------------------------------------------
+    //___________________________________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -53,7 +54,8 @@ export default class AreaChart extends HTMLElement {
             })
             .catch(err => console.error('ERROR -> ', err));
     }
-    //----------------------------------------------------------------------------
+    //_____________________________________________________________________
+    //
     #scaling() {
         this.yScale = d3.scaleLinear()
             .domain([0, this.xpAmount])
@@ -63,7 +65,8 @@ export default class AreaChart extends HTMLElement {
             .domain(d3.extent(this.data, d => d.date))
             .range([this.marginLeft, this.width - this.marginRight]);
     }
-    //----------------------------------------------------------------------------
+    //________________________________________________________________
+    //
     #drawAxis() {
         // Draw Y Axis
         const yAxis = d3.axisLeft(this.yScale)
@@ -121,7 +124,8 @@ export default class AreaChart extends HTMLElement {
             .attr('stroke', '#777')
             .attr('stroke-width', .25)
     }
-    //----------------------------------------------------------------------------
+    //___________________________________________________________________________________________
+    //
     #drawArea() {
         const area = d3.area()
             .x(d => this.xScale(d.date))
@@ -144,7 +148,8 @@ export default class AreaChart extends HTMLElement {
             .attr('d', line(this.data))
             .attr('stroke', '#00d4a1')
     }
-    //----------------------------------------------------------------------------
+    //____________________________________________
+    //
     static define(tag = 'progress-line-chart') {
         customElements.define(tag, this);
     }

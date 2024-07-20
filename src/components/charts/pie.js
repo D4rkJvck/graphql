@@ -18,9 +18,10 @@ export default class PieChart extends HTMLElement {
             .attr('viewBox', [- this.width / 2, - this.height / 2, this.width, this.height])
             .attr('preserveAspectRatio', 'xMidYMid meet')
 
-            this.query = TOP_PROJECTS_QUERY;
+        this.query = TOP_PROJECTS_QUERY;
     }
-
+    //________________________________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -38,7 +39,8 @@ export default class PieChart extends HTMLElement {
             })
             .catch(error => console.error('ERROR: ', error))
     }
-
+    //________________________________________________________________________________
+    //
     #createLayout() {
         this.pie = d3.pie()
             .sort(null)
@@ -57,7 +59,8 @@ export default class PieChart extends HTMLElement {
 
         this.arcs = this.pie(this.data);
     }
-
+    //___________________________________________________________________________________________
+    //
     #drawSectors() {
         this.svg.append('g')
             .attr('stroke', '#00d4a1')
@@ -93,7 +96,8 @@ export default class PieChart extends HTMLElement {
                 }));
 
     }
-
+    //___________________________________________________________________________________________
+    //
     static define(tag = 'pie-chart') {
         customElements.define(tag, this);
     }

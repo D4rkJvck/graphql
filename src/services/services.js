@@ -15,7 +15,8 @@ export const loginTalent = async credentials => {
         .catch(error => console.log(error))
 }
 
-//------------------------------------------------------------------------------
+//_______________________________________________________________________________
+//
 
 export const fetchFromGraphiQL = async query => {
     const token = localStorage.getItem('jwtToken')

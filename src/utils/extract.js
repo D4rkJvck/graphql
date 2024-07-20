@@ -15,6 +15,9 @@ export const getRank = (level) => {
     }
 }
 
+//_______________________________________________
+//
+
 export const getRatioColor = (value, i = 0) => {
     if (i == !0) {
         return '#caadff'

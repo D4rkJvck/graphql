@@ -20,7 +20,8 @@ export default class RadarChart extends HTMLElement {
 
         this.query = SKILLS_QUERY;
     }
-
+    //_____________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -43,14 +44,16 @@ export default class RadarChart extends HTMLElement {
             })
             .catch(error => console.error('ERROR: ', error))
     }
-
+    //_____________________________________________________________________
+    //
     #scaling() {
-        
+
         this.scale = d3.scaleLinear()
             .domain([0, 100])
             .range([0, this.radius])
-        };
-        
+    };
+    //_______________________________________________________________________________
+    //
     #createLayout() {
         this.angleSlice = Math.PI * 2 / this.data.length;
         const levels = 5;
@@ -81,7 +84,7 @@ export default class RadarChart extends HTMLElement {
                 .attr('y2', y)
                 .attr('stroke', '#777')
                 .attr('stroke-width', 0.5);
-            
+
             // Add Labels
             radialGrid.append('text')
                 .attr('x', x * 1.3)
@@ -94,7 +97,8 @@ export default class RadarChart extends HTMLElement {
         });
 
     };
-
+    //_______________________________________________________________________________
+    //
     #drawRadar() {
         const radarLine = d3.lineRadial()
             .radius(d => this.scale(d.amount))
@@ -110,7 +114,8 @@ export default class RadarChart extends HTMLElement {
             .attr('fill', '#caadff25')
             .attr('stroke', '#00d4a1')
     };
-
+    //________________________________________________________________________________
+    //
     static define(tag = 'radar-chart') {
         customElements.define(tag, this);
     }

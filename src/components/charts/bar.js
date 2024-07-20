@@ -26,7 +26,8 @@ export default class BarChart extends HTMLElement {
         this.query = PROGRESS_QUERY;
         this.oneYearAgo = new Date(new Date() - 31536000000);
     }
-
+    //___________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -43,7 +44,8 @@ export default class BarChart extends HTMLElement {
             })
             .catch(error => console.log(error))
     }
-
+    //______________________________________________________________________
+    //
     #scaling() {
         this.yScale = d3.scaleLinear()
             .domain([0, d3.max(this.data, d => d.amount) * 1.2])
@@ -54,7 +56,8 @@ export default class BarChart extends HTMLElement {
             .range([this.marginLeft, this.width - this.marginRight])
             .paddingInner(.25);
     }
-
+    //__________________________________________________________________
+    //
     #drawAxis() {
         // Draw Y Axis
         const yAxis = d3.axisLeft(this.yScale)
@@ -104,7 +107,8 @@ export default class BarChart extends HTMLElement {
             .attr('stroke', '#777')
             .attr('stroke-width', .15);
     }
-
+    //________________________________________________________________________________
+    //
     #drawBars() {
         this.svg.append('g')
             .attr('fill', '#caadff25')
@@ -127,7 +131,8 @@ export default class BarChart extends HTMLElement {
         //     .attr('text-anchor', 'middle')
         //     .text(d => convertXP(d.amount).fmt);
     }
-
+    //______________________________________________________________________________
+    //
     static define(tag = 'bar-chart') {
         customElements.define(tag, this)
     }

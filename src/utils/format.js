@@ -24,6 +24,9 @@ export const convertXP = xp => {
     }
 }
 
+//_________________________________________________________________
+//
+
 export const xpByMonth = data => {
     const xpObj = data.reduce((acc, d) => {
         const date = new Date(d.date);

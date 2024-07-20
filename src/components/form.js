@@ -19,11 +19,13 @@ export default class LoginForm extends HTMLElement {
         link.href = 'styles/components/form.css';
         this.shadow.appendChild(link);
     }
-
+    //__________________________________________________________
+    //
     connectedCallback() {
         this.#submission();
     }
-
+    //_________________________________________________________________________
+    //
     #submission() {
         this.form.onsubmit = (event) => {
             event.preventDefault()
@@ -56,7 +58,8 @@ export default class LoginForm extends HTMLElement {
                 });
         }
     }
-
+    //_________________________________________________________________________
+    //
     static define(tag = 'login-form') {
         customElements.define(tag, this)
     }

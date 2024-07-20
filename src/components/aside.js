@@ -19,7 +19,8 @@ export default class ProfileSection extends HTMLElement {
 
         this.query = PROFILE_QUERY;
     }
-
+    //__________________________________________________________________
+    //
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
@@ -40,7 +41,8 @@ export default class ProfileSection extends HTMLElement {
             })
             .catch(err => console.error('ERROR -> ', err))
     }
-
+    //________________________________________________________________________________
+    //
     #render(data) {
         const fmt = convertXP(data.xpAmount);
 
@@ -82,7 +84,8 @@ export default class ProfileSection extends HTMLElement {
         const auditRatio = this.shadow.querySelector('#audit-ratio');
         auditRatio.appendChild(new DonutChart());
     }
-
+    //________________________________________________________________________________
+    //
     static define(tag = 'profile-section') {
         customElements.define(tag, this)
     }

@@ -14,7 +14,8 @@ export default class NavBar extends HTMLElement {
         link.href = 'styles/components/nav.css';
         this.shadow.appendChild(link);
     }
-
+    //_______________________________________________________
+    //
     connectedCallback() {
         const btn = this.shadow.querySelector('button');
 
@@ -25,7 +26,8 @@ export default class NavBar extends HTMLElement {
             MAIN.appendChild(new LoginForm);
         }
     }
-
+    //_______________________________________________________
+    //
     static define(tag = 'header-navbar') {
         customElements.define(tag, this)
     }
