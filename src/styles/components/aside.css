@@ -99,7 +99,8 @@ figcaption {
 #audit,
 #level,
 #xp-amount,
-#xp-unit {
+#xp-unit,
+#profile {
     font-size: calc(var(--text-xxl) * 1.5);
     text-align: center;
 }

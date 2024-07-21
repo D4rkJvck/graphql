@@ -2,9 +2,10 @@ export const PROFILE_QUERY = /* GraphQL */ `
 query {
   user_info: user {
     login
+    attrs
+    auditRatio
     firstName
     lastName
-    auditRatio
     events(where: { event: { object: { type: { _eq: "module" } } } }) {
       level
     }

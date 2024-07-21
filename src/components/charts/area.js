@@ -58,7 +58,7 @@ export default class AreaChart extends HTMLElement {
     //
     #scaling() {
         this.yScale = d3.scaleLinear()
-            .domain([0, this.xpAmount])
+            .domain([0, this.xpAmount * 1.5])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleUtc()
@@ -96,14 +96,6 @@ export default class AreaChart extends HTMLElement {
             .attr('stroke', '#777')
             .attr('stroke-width', .25)
         
-        this.svg.append('text')
-            .attr('x', this.marginLeft + 50)
-            .attr('y', this.marginTop)
-            .attr('dy', '-0.5em')
-            .attr('text-anchor', 'end')
-            .attr('fill', '#00d4a1')
-            .text(d3.format('.3s')(this.xpAmount).replace('k', 'kB').replace('M', 'MB'));
-
         // Draw X Axis
         const xAxis = d3.axisBottom(this.xScale)
             .tickFormat(d3.timeFormat('%b'));

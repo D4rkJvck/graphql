@@ -34,6 +34,7 @@ export default class ProfileSection extends HTMLElement {
                     login: user.login,
                     firstName: user.firstName,
                     lastName: user.lastName,
+                    gender: user.attrs.gender,
                     auditRatio: user.auditRatio.toFixed(1),
                     level: user.events[0].level,
                     xpAmount: data.data.xp_amount.aggregate.sum.amount
@@ -48,6 +49,17 @@ export default class ProfileSection extends HTMLElement {
 
         const loginLegend = this.shadow.querySelector('#login');
         loginLegend.innerText = data.login;
+        
+        const profileSpan = this.shadow.querySelector('#profile');
+        let img = '👤'
+
+        if (data.gender === 'Masculin') {
+            img = /* HTML */ `<img src="assets/avatar-male.svg" alt="👤" />`
+        } else if (data.gender === 'Féminin') {
+            img = /* HTML */ `<img src="assets/avatar-female.svg" alt="👤" />`
+        }
+        
+        profileSpan.innerHTML = img
 
         const userFigcaption = this.shadow.querySelector('#user');
         userFigcaption.innerHTML = /* HTML */ `
@@ -73,11 +85,13 @@ export default class ProfileSection extends HTMLElement {
 
         const auditFigcaption = this.shadow.querySelector('#audit');
         auditFigcaption.innerText = data.auditRatio;
+        
         // Audit Text Color and Size depending on Value
-        auditFigcaption.parentNode.parentNode.addEventListener('mouseover', () => {
+        const auditFieldset = auditFigcaption.parentNode.parentNode;
+        auditFieldset.addEventListener('mouseover', () => {
             auditFigcaption.style.color = getRatioColor(data.auditRatio);
         })
-        auditFigcaption.parentNode.parentNode.addEventListener('mouseout', () => {
+        auditFieldset.addEventListener('mouseout', () => {
             auditFigcaption.style.color = 'inherit'
         })
 
