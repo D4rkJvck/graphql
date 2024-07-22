@@ -57,11 +57,11 @@ figure {
 span:not(#first-name, #last-name) {
     align-items: center;
     border: 1px solid var(--text-dark-gray);
-    /* border-radius: 50%; */
+    border-radius: var(--rounded-md);
     display: flex;
     height: 75%;
     justify-content: center;
-    width: 40%;
+    width: 35%;
 }
 
 legend {
@@ -108,6 +108,11 @@ figcaption {
 #rank {
     font-size: var(--text-sm);
     text-align: center;
+}
+
+img {
+    height: fit-content;
+    width: fit-content;
 }
 
 hr {

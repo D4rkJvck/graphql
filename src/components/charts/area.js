@@ -57,8 +57,10 @@ export default class AreaChart extends HTMLElement {
     //_____________________________________________________________________
     //
     #scaling() {
+        this.expectedAmount = 5064075;
+        
         this.yScale = d3.scaleLinear()
-            .domain([0, this.xpAmount * 1.5])
+            .domain([0, Math.max(this.xpAmount, this.expectedAmount)])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleUtc()
