@@ -130,7 +130,7 @@ export default class BarChart extends HTMLElement {
             .attr('width', this.xScale.bandwidth())
             .on('mouseover', (e, d) => {
                 this.svg.select('text')
-                    .attr('x', this.xScale(d.date) - 35)
+                    .attr('x', this.xScale(d.date) - 40)
                     .attr('y', this.yScale(d.amount) - this.yScale(0) - 10)
                     .attr('text-anchor', 'middle')
                     .text(convertXP(d.amount).fmt);

@@ -24,18 +24,16 @@ export const convertXP = xp => {
     }
 }
 
-//_________________________________________________________________
+//___________________________________________________________________________________________
 //
 
 export const xpByMonth = data => {
     const xpObj = data.reduce((acc, d) => {
-        const date = new Date(d.date);
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        const key = `${month + 1}/${year}`;
+        const date = formatDate(new Date(d.date)).date; console.log(date);
+        const key = formatDate(date).key;
 
         if (!acc[key]) {
-            acc[key] = { date: new Date(year, month), amount: 0 };
+            acc[key] = { date: new Date(date), amount: 0 };
         }
 
         acc[key].amount += d.amount;
@@ -45,22 +43,33 @@ export const xpByMonth = data => {
 
     const monthTab = [];
     const earliestDate = new Date(Math.min(...data.map(d => new Date(d.date))));
-    const now = new Date()
-    let currentDate = new Date(earliestDate)
-    
+    const now = formatDate(new Date()).date; console.log(now);
+    let currentDate = formatDate(new Date(earliestDate)).date; console.log(currentDate);
+
     while (currentDate <= now) {
-        const month = currentDate.getMonth();
-        const year = currentDate.getFullYear();
-        const key = `${month + 1}/${year}`;
-        
+        const key = formatDate(currentDate).key;
+
         if (!xpObj[key]) {
-            xpObj[key] = { date: new Date(year, month), amount: 0 };
+            xpObj[key] = { date: new Date(currentDate), amount: 0 };
         }
-        
+
         monthTab.push(xpObj[key]);
-        
+
         currentDate.setMonth(currentDate.getMonth() + 1);
     }
 
     return monthTab
 };
+
+//_________________________________________________________________________________________
+//
+
+const formatDate = date => {
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const key = `${month + 1}/${year}`;
+    return {
+        date: new Date(year, month),
+        key: key
+    }
+}
