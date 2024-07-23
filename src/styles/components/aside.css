@@ -72,7 +72,7 @@ legend {
 
 figcaption {
     max-height: 75%;
-    width: fit-content;
+    width: 40%;
 }
 
 #user {
@@ -129,7 +129,6 @@ hr {
 
     fieldset {
         height: 20vh;
-        /* width: 21.5vw; */
     }
 }
 
