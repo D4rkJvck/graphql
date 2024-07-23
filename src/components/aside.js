@@ -86,8 +86,10 @@ export default class ProfileSection extends HTMLElement {
         levelFigcaption.innerText = data.level;
 
         const rankSpan = this.shadow.querySelector('#rank');
-        rankSpan.innerText = getRank(data.level);
-        rankSpan.style.color = '#caadff'
+        const rank = getRank(data.level)
+        rankSpan.innerText = rank.text;
+        rankSpan.style.color = rank.color;
+        rankSpan.style.fontSize = 'var(--text-sm)'
 
         const auditFigcaption = this.shadow.querySelector('#audit');
         auditFigcaption.innerText = data.auditRatio;

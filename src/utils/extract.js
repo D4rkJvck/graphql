@@ -1,17 +1,35 @@
 export const getRank = (level) => {
     switch (true) {
         case level >= 50:
-            return 'Junior Developer'
+            return {
+                text: 'Junior Developer',
+                color: '#601AFF'
+            }
         case level >= 40:
-            return 'Basic Developer'
+            return {
+                text: 'Basic Developer',
+                color: '#7538FF'
+            }
         case level >= 30:
-            return 'Assistant Developer'
+            return {
+                text: 'Assistant Developer',
+                color: '#9969FF'
+            }
         case level >= 20:
-            return 'Apprentice Developer'
+            return {
+                text: 'Apprentice Developer',
+                color: '#B795FF'
+            }
         case level >= 10:
-            return 'Beginner Developer'
+            return {
+                text: 'Beginner Developer',
+                color: '#CAADFF'
+            }
         default:
-            return 'Aspiring Developer'
+            return {
+                text: 'Aspiring Developer',
+                color: '#D7C2FF'
+            }
     }
 }
 
