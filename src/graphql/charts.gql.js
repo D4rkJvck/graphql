@@ -2,7 +2,7 @@ export const TOP_PROJECTS_QUERY = /* GraphQL */ `
   query {
     top_projects: xp_view(
       where: {
-        event: { object: { type: { _eq: "module" } } }
+        path: { _like: "%div-01%" }
       }
       order_by: { amount: desc }
       limit: 5

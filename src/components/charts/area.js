@@ -35,8 +35,8 @@ export default class AreaChart extends HTMLElement {
                     throw new Error('No data fetched!');
                 }
 
-                const xpTab = xpByMonth(data.data.xp_progress);
-
+                const xpTab = xpByMonth(data.data.xp_progress);                
+                
                 // Accumulate XP
                 xpTab.forEach((d, i) => {
                         if (i > 0) {
@@ -58,7 +58,7 @@ export default class AreaChart extends HTMLElement {
     //
     #scaling() {
         this.expectedAmount = 5064075;
-        
+
         this.yScale = d3.scaleLinear()
             .domain([0, Math.max(this.xpAmount, this.expectedAmount)])
             .range([this.height - this.marginBottom, this.marginTop]);
@@ -89,6 +89,7 @@ export default class AreaChart extends HTMLElement {
         // Add Y Grid Lines
         const yGridLines = d3.axisLeft(this.yScale)
             .tickSize(- this.width + this.marginLeft + this.marginRight)
+            .tickSizeOuter(0)
             .tickFormat('');
 
         this.svg.append('g')
@@ -109,6 +110,7 @@ export default class AreaChart extends HTMLElement {
         // Add X Grid Lines
         const xGridLines = d3.axisBottom(this.xScale)
             .tickSize(- this.width + this.marginBottom + this.marginTop)
+            .tickSizeOuter(0)
             .tickFormat('');
 
         this.svg.append('g')

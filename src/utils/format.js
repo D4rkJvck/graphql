@@ -43,7 +43,25 @@ export const xpByMonth = data => {
         return acc
     }, {})
 
-    xpObj['Now'] = { date: new Date(), amount: 0 }
+    const monthTab = [];
+    const earliestDate = new Date(Math.min(...data.map(d => new Date(d.date))));
+    const now = new Date()
+    let currentDate = new Date(earliestDate)
+    
+    while (currentDate <= now) {
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+        const key = `${month + 1}/${year}`;
+        
+        if (!xpObj[key]) {
+            xpObj[key] = { date: new Date(year, month), amount: 0 };
+        }
+        
+        monthTab.push(xpObj[key]);
+        
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        console.log(currentDate);
+    }
 
-    return Object.values(xpObj)
+    return monthTab
 };

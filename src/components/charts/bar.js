@@ -47,8 +47,10 @@ export default class BarChart extends HTMLElement {
     //______________________________________________________________________
     //
     #scaling() {
+        const xpAVG = 281337.5;
+
         this.yScale = d3.scaleLinear()
-            .domain([0, d3.max(this.data, d => d.amount) * 1.2])
+            .domain([0, Math.max(d3.max(this.data, d => d.amount), xpAVG)])
             .range([this.height - this.marginBottom, this.marginTop]);
 
         this.xScale = d3.scaleBand()
@@ -78,7 +80,8 @@ export default class BarChart extends HTMLElement {
         // Add Y Grid Lines
         const yGridLines = d3.axisLeft(this.yScale)
             .tickSize(- this.width + this.marginLeft + this.marginRight)
-            .tickFormat('');
+            .tickFormat('')
+            .tickSizeOuter(0);
 
         this.svg.append('g')
             .attr('transform', `translate(${this.marginLeft}, 0)`)
@@ -98,7 +101,8 @@ export default class BarChart extends HTMLElement {
         // Add X Grid Lines
         const xGridLines = d3.axisBottom(this.xScale)
             .tickSize(- this.height + this.marginBottom + this.marginTop)
-            .tickFormat('');
+            .tickFormat('')
+            .tickSizeOuter(0);
 
         this.svg.append('g')
             .attr('transform', `translate(0, ${this.height - this.marginBottom})`)
@@ -121,15 +125,13 @@ export default class BarChart extends HTMLElement {
             .attr('y', d => this.yScale(d.amount))
             .attr('height', d => this.yScale(0) - this.yScale(d.amount))
             .attr('width', this.xScale.bandwidth())
-
-        // Add Labels
-        // this.svg.selectAll('text')
-        //     .data(this.data)
-        //     .join('text')
-        //     .attr('x', d => this.xScale(d.date) + this.xScale.bandwidth() / 2)
-        //     .attr('y', d => this.yScale(d.amount) - 5)
-        //     .attr('text-anchor', 'middle')
-        //     .text(d => convertXP(d.amount).fmt);
+            .on('mouseover', (e, d) => {
+                this.svg.select('text')
+                    .attr('x', this.xScale(d.date) - 35)
+                    .attr('y', this.yScale(d.amount) - this.yScale(0) - 10)
+                    .attr('text-anchor', 'middle')
+                    .text(convertXP(d.amount).fmt);
+            })
     }
     //______________________________________________________________________________
     //

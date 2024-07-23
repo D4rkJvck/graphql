@@ -42,6 +42,7 @@ export default class DonutChart extends HTMLElement {
     //
     #createLayout() {
         this.pie = d3.pie()
+            .sort(null)
             .value(d => d)
             .padAngle(.1)
 

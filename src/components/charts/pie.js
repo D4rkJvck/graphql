@@ -89,7 +89,7 @@ export default class PieChart extends HTMLElement {
                 .attr('font-size', '10px')
                 .attr('fill', '#fff')
                 .attr('x', 0)
-                .attr('y', '1.25em')
+                .attr('y', '1.5em')
                 .text(d => {
                     const fmt = convertXP(d.data.amount);
                     return `${fmt.value} ${fmt.unit}`
