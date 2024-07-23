@@ -33,7 +33,8 @@ export default class DonutChart extends HTMLElement {
                     throw new Error('ERROR: Data not fetched');
                 }
 
-                this.data = Object.values(data.data.audit[0])
+                this.data = Object.values(data.data.audit[0]);
+                this.auditRatio = (this.data[0] / this.data[1]).toFixed(1);
 
                 this.#createLayout();
                 this.#drawSectors();
@@ -61,7 +62,7 @@ export default class DonutChart extends HTMLElement {
             .selectAll()
             .data(this.arcs)
             .join('path')
-            .attr('fill', (d, i) => getRatioColor(convertXP(d.value).value, i))
+            .attr('fill', (d, i) => getRatioColor(this.auditRatio, i))
             .attr('d', this.arc)
             .append('title')
             .text(d => Object.keys(d.data).map(key => `${key}: ${d.data[key]}`).join(', '))
