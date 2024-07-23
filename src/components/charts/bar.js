@@ -1,5 +1,6 @@
 import { PROGRESS_QUERY } from "../../graphql/charts.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
+import { errorNoData } from "../../utils/elements.js";
 import { convertXP, xpByMonth } from "../../utils/format.js";
 
 export default class BarChart extends HTMLElement {
@@ -32,6 +33,7 @@ export default class BarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    errorNoData(this);
                     throw new Error('ERROR: Data not fectched')
                 }
 
@@ -56,7 +58,8 @@ export default class BarChart extends HTMLElement {
         this.xScale = d3.scaleBand()
             .domain(this.data.map(d => d.date))
             .range([this.marginLeft, this.width - this.marginRight])
-            .paddingInner(.25);
+            .paddingInner(.25)
+            .paddingOuter(.25);
     }
     //__________________________________________________________________
     //

@@ -60,7 +60,6 @@ export const xpByMonth = data => {
         monthTab.push(xpObj[key]);
         
         currentDate.setMonth(currentDate.getMonth() + 1);
-        console.log(currentDate);
     }
 
     return monthTab

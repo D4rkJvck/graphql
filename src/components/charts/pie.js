@@ -1,5 +1,6 @@
 import { TOP_PROJECTS_QUERY } from "../../graphql/charts.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
+import { errorNoData } from "../../utils/elements.js";
 import { convertXP } from "../../utils/format.js";
 
 export default class PieChart extends HTMLElement {
@@ -26,6 +27,7 @@ export default class PieChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    errorNoData(this);
                     throw new Error('Data not fetched');
                 }
 

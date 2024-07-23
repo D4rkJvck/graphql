@@ -4,6 +4,7 @@ import { fetchFromGraphiQL } from "../services/services.js";
 import { convertXP } from "../utils/format.js";
 import DonutChart from "./charts/donut.js";
 import { getRatioColor, getRank } from "../utils/extract.js";
+import { errorNoData } from "../utils/elements.js";
 
 export default class ProfileSection extends HTMLElement {
     constructor() {
@@ -25,6 +26,11 @@ export default class ProfileSection extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    this.shadow.querySelectorAll('figure')
+                        .forEach(elem => {
+                            errorNoData(elem)
+                        });
+
                     throw new Error('No data fetched');
                 }
 
@@ -49,7 +55,7 @@ export default class ProfileSection extends HTMLElement {
 
         const loginLegend = this.shadow.querySelector('#login');
         loginLegend.innerText = data.login;
-        
+
         const profileSpan = this.shadow.querySelector('#profile');
         let img = '👤'
 
@@ -58,7 +64,7 @@ export default class ProfileSection extends HTMLElement {
         } else if (data.gender === 'Féminin') {
             img = /* HTML */ `<img src="assets/avatar-female.svg" alt="👤" />`
         }
-        
+
         profileSpan.innerHTML = img
 
         const userFigcaption = this.shadow.querySelector('#user');
@@ -85,7 +91,7 @@ export default class ProfileSection extends HTMLElement {
 
         const auditFigcaption = this.shadow.querySelector('#audit');
         auditFigcaption.innerText = data.auditRatio;
-        
+
         // Audit Text Color and Size depending on Value
         const auditFieldset = auditFigcaption.parentNode.parentNode;
         auditFieldset.addEventListener('mouseover', () => {

@@ -1,5 +1,6 @@
 import { AUDIT_QUERY } from "../../graphql/profile.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
+import { errorNoData } from "../../utils/elements.js";
 import { getRatioColor } from "../../utils/extract.js";
 import { convertXP } from "../../utils/format.js";
 
@@ -28,6 +29,7 @@ export default class DonutChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    errorNoData(this);
                     throw new Error('ERROR: Data not fetched');
                 }
 

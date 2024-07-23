@@ -71,8 +71,8 @@ legend {
 }
 
 figcaption {
-    height: 75%;
-    width: 40%;
+    max-height: 75%;
+    width: fit-content;
 }
 
 #user {

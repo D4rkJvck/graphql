@@ -1,5 +1,6 @@
 import { PROGRESS_QUERY } from '../../graphql/charts.gql.js';
 import { fetchFromGraphiQL } from '../../services/services.js';
+import { errorNoData } from '../../utils/elements.js';
 import { xpByMonth } from '../../utils/format.js';
 
 export default class AreaChart extends HTMLElement {
@@ -32,6 +33,7 @@ export default class AreaChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    errorNoData(this);
                     throw new Error('No data fetched!');
                 }
 

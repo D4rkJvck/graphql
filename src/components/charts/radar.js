@@ -1,5 +1,6 @@
 import { SKILLS_QUERY } from "../../graphql/charts.gql.js";
 import { fetchFromGraphiQL } from "../../services/services.js";
+import { errorNoData } from "../../utils/elements.js";
 
 export default class RadarChart extends HTMLElement {
     constructor() {
@@ -26,6 +27,7 @@ export default class RadarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
+                    errorNoData(this);
                     throw new Error('Data not fetched')
                 }
 
