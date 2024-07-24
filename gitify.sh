@@ -74,7 +74,8 @@ commit_and_push() {
     git status
     read -r -p "Enter Commit Message: " commit_message
     git commit -a -m "$commit_message"
-    git push origin github
+    git push origin "$desired_branch"
+    git push github "$desired_branch"
 
     log "Well done!"
 }
