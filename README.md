@@ -16,7 +16,7 @@
 
 <hr style="background: #333">
 
-## Description
+## Description 
 
 This project is about creating a Dashboard representing the Statistics of Zone01's talents within the 01-edu System Platform.  
 The program should log the **Talent** in the platform to get a **JSON Web Token (JWT)**.  
