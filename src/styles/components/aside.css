@@ -22,7 +22,7 @@ figcaption,
     gap: var(--element-gap);
     justify-content: flex-start;
     min-height: 80vh;
-    width: 20vw;
+    width: 21vw;
 }
 
 fieldset {

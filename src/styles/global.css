@@ -30,7 +30,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: var(--element-gap);
-    justify-content: center;
+    justify-content: space-between;
     min-height: 80vh;
 }
 
