@@ -29,7 +29,7 @@ export const convertXP = xp => {
 
 export const xpByMonth = data => {
     const xpObj = data.reduce((acc, d) => {
-        const date = formatDate(new Date(d.date)).date; console.log(date);
+        const date = formatDate(new Date(d.date)).date;
         const key = formatDate(date).key;
 
         if (!acc[key]) {
@@ -43,8 +43,8 @@ export const xpByMonth = data => {
 
     const monthTab = [];
     const earliestDate = new Date(Math.min(...data.map(d => new Date(d.date))));
-    const now = formatDate(new Date()).date; console.log(now);
-    let currentDate = formatDate(new Date(earliestDate)).date; console.log(currentDate);
+    const now = formatDate(new Date()).date;
+    let currentDate = formatDate(new Date(earliestDate)).date;
 
     while (currentDate <= now) {
         const key = formatDate(currentDate).key;
