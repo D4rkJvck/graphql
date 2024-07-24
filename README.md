@@ -47,10 +47,12 @@ Click on badges to get to the code...
 
 [![GRAPHQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)](src/graphql/profile.gql.js)
 [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](src/components/form.js)
+[![D3](https://img.shields.io/badge/d3%20js-F9A03C?style=for-the-badge&logo=d3.js&logoColor=white)](src/components/charts/radar.js)
 
 ### Development
 
 [![VERCEL](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://graph01.vercel.app/)
+[![FIREBASE](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)]()
 [![WARP](https://img.shields.io/badge/warp-01A4FF?style=for-the-badge&logo=warp&logoColor=white)]()
 [![SHELL SCRIPT](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)](./gitify.sh)
 [![MARKDOWN](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](#table-of-contents)
@@ -59,6 +61,7 @@ Click on badges to get to the code...
 
 [![MAC OS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)]()
 [![GITHUB](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/D4rkJvck/graphql.git)
+[![TRELLO](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)]()
 
 ###### [*Table of Content ⤴️*](#table-of-contents)
 
@@ -225,10 +228,15 @@ The fetched data from the Graph queries are then displayed in the Dashboard as s
 
 ## Aknowledgements
 
-[![PEER](https://img.shields.io/badge/Zone01-mamoundiaye-blue)](https://learn.zone01dakar.sn/git/mamoundiaye)  
-[![PEER](https://img.shields.io/badge/Zone01-khthiam-blue)](https://learn.zone01dakar.sn/git/khthiam)  
-[![PEER](https://img.shields.io/badge/Zone01-mandaw-blue)](https://learn.zone01dakar.sn/git/mandaw)  
-[![PEER](https://img.shields.io/badge/Zone01-cheikhndiaye-blue)](https://learn.zone01dakar.sn/git/cheikhndiaye)  
+[![DEBUG](https://img.shields.io/badge/P2P-mamoundiaye-blue)](https://learn.zone01dakar.sn/git/mamoundiaye)  
+[![PEER](https://img.shields.io/badge/P2P-khthiam-blue)](https://learn.zone01dakar.sn/git/khthiam)  
+[![PEER](https://img.shields.io/badge/P2P-cheikhndiaye-blue)](https://learn.zone01dakar.sn/git/cheikhndiaye)  
+[![TEST](https://img.shields.io/badge/Test-mandaw-red)](https://learn.zone01dakar.sn/git/mandaw)  
+[![AUDIT](https://img.shields.io/badge/Audit-peer-green)]()  
+[![AUDIT](https://img.shields.io/badge/Audit-peer-green)]()  
+[![AUDIT](https://img.shields.io/badge/Audit-peer-green)]()  
+[![AUDIT](https://img.shields.io/badge/Audit-peer-green)]()  
+[![AUDIT](https://img.shields.io/badge/Audit-peer-green)]()  
 
 ###### [*Table of Content ⤴️*](#table-of-contents)
 
@@ -238,6 +246,7 @@ The fetched data from the Graph queries are then displayed in the Dashboard as s
 
 [![YOUTUBE](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com)  
 [![GEMINI](https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)](https://gemini.google.com/app)  
+[![FreeCodeCamp](https://img.shields.io/badge/freecodecamp-27273D?style=for-the-badge&logo=freecodecamp&logoColor=white)]()  
 
 ###### [*Table of Content ⤴️*](#table-of-contents)
 
@@ -245,4 +254,4 @@ The fetched data from the Graph queries are then displayed in the Dashboard as s
 
 ## License
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)

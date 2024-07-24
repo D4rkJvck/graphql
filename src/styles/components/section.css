@@ -27,11 +27,13 @@ fieldset {
     flex-direction: column;
     height: 39.75vh;
     justify-content: center;
+    transition: .5s;
     width: 33.5vw;
 }
 
 fieldset:hover {
-    border: 2px solid var(--text-zone01-stats); 
+    border: 2px solid var(--text-zone01-stats);
+    transform: scale(1.05);
 }
 
 fieldset:hover legend {
