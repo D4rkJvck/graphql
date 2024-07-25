@@ -55,7 +55,7 @@ export default class AreaChart extends HTMLElement {
             })
             .catch(err => {
                 errorNoData(this);
-                console.error('ERROR -> ', err)
+                console.log(err);
             });
     }
     //_____________________________________________________________________

@@ -33,7 +33,7 @@ export default class BarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    throw new Error('ERROR: Data not fectched')
+                    throw new Error('No data fetched!')
                 }
 
                 const xpTab = xpByMonth(data.data.xp_progress);

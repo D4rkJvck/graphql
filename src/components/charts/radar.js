@@ -15,7 +15,8 @@ export default class RadarChart extends HTMLElement {
         this.height = 272;
         this.radius = Math.min(this.width / 2.25, this.height / 2.25);
 
-        this.svg = d3.select(this).append('svg')
+        this.svg = d3.select(this)
+            .append('svg')
             .attr('viewBox', `0 0 ${this.width} ${this.height}`)
             .attr('preserveAspectRatio', 'xMidYMid meet');
 
@@ -27,7 +28,7 @@ export default class RadarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    throw new Error('Data not fetched')
+                    throw new Error('No data fetched!')
                 }
 
                 this.data = data.data.skills
@@ -43,10 +44,10 @@ export default class RadarChart extends HTMLElement {
                 this.#createLayout();
                 this.#drawRadar();
             })
-            .catch(error => {
+            .catch(err => {
                 errorNoData(this);
-                console.error('ERROR: ', error);
-            })
+                console.log(err);
+            });
     }
     //_____________________________________________________________________
     //

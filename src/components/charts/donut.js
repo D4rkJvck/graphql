@@ -29,7 +29,7 @@ export default class DonutChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    throw new Error('ERROR: Data not fetched');
+                    throw new Error('No data fetched!');
                 }
 
                 this.data = Object.values(data.data.audit[0]);
@@ -40,7 +40,7 @@ export default class DonutChart extends HTMLElement {
             })
             .catch(error => {
                 errorNoData(this);
-                console.log('ERROR -> ', error);
+                console.log(error);
             })
     }
     //____________________________________________________________

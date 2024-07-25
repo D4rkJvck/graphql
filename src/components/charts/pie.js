@@ -27,7 +27,7 @@ export default class PieChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    throw new Error('Data not fetched');
+                    throw new Error('No data fetched!');
                 }
 
                 this.data = data.data.top_projects.map(d => {
@@ -40,7 +40,7 @@ export default class PieChart extends HTMLElement {
             })
             .catch(error => {
                 errorNoData(this);
-                console.error('ERROR: ', error);
+                console.log(error);
             })
     }
     //________________________________________________________________________________

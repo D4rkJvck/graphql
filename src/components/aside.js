@@ -26,7 +26,7 @@ export default class ProfileSection extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    throw new Error('No data fetched');
+                    throw new Error('No data fetched!');
                 }
 
                 const user = data.data.user_info[0];
@@ -46,7 +46,7 @@ export default class ProfileSection extends HTMLElement {
                     .forEach(elem => {
                         errorNoData(elem)
                     });
-                console.error('ERROR -> ', err);
+                console.log(err);
             })
     }
     //________________________________________________________________________________
