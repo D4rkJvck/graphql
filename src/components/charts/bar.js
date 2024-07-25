@@ -33,7 +33,6 @@ export default class BarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    errorNoData(this);
                     throw new Error('ERROR: Data not fectched')
                 }
 
@@ -44,7 +43,10 @@ export default class BarChart extends HTMLElement {
                 this.#drawAxis();
                 this.#drawBars();
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                errorNoData(this);
+                console.log(error);
+            })
     }
     //______________________________________________________________________
     //

@@ -29,7 +29,6 @@ export default class DonutChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    errorNoData(this);
                     throw new Error('ERROR: Data not fetched');
                 }
 
@@ -39,7 +38,10 @@ export default class DonutChart extends HTMLElement {
                 this.#createLayout();
                 this.#drawSectors();
             })
-            .catch(error => console.log('ERROR -> ', error))
+            .catch(error => {
+                errorNoData(this);
+                console.log('ERROR -> ', error);
+            })
     }
     //____________________________________________________________
     //

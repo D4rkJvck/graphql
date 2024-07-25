@@ -27,7 +27,6 @@ export default class RadarChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    errorNoData(this);
                     throw new Error('Data not fetched')
                 }
 
@@ -44,7 +43,10 @@ export default class RadarChart extends HTMLElement {
                 this.#createLayout();
                 this.#drawRadar();
             })
-            .catch(error => console.error('ERROR: ', error))
+            .catch(error => {
+                errorNoData(this);
+                console.error('ERROR: ', error);
+            })
     }
     //_____________________________________________________________________
     //

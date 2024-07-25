@@ -1,32 +1,32 @@
 Functional:
 
 Try to log in with invalid credentials
-☐ Is an appropriate error shown?
+✔ Is an appropriate error shown? @done(24-07-25 11:41)
 
 Ask the student to login with valid credentials
-☐ Does the profile page consist of three sections as required?
+✔ Does the profile page consist of three sections as required? @done(24-07-25 11:42)
 
 Verify the accuracy of the content/information in the three Sections using **GraphiQL**.
-☐ Are the details presented in these sections accurate and correspond to the expected data?
-☐ Does the profile include a fourth section dedicated to graphical statistics?
-☐ Does this section contain at least two different graphs created using SVG as specified in the project requirements?
+✔ Are the details presented in these sections accurate and correspond to the expected data? @done(24-07-25 11:42)
+✔ Does the profile include a fourth section dedicated to graphical statistics? @done(24-07-25 11:42)
+✔ Does this section contain at least two different graphs created using SVG as specified in the project requirements? @done(24-07-25 11:42)
 
 Try to validate the accuracy of the information presented in the graphs.
-☐ Do the graphs display the expected data accurately?
+✔ Do the graphs display the expected data accurately? @done(24-07-25 11:43)
 
 Try to access the profile from the host domain.
-☐ Is the profile successfully accessible and hosted online?
+✔ Is the profile successfully accessible and hosted online? @done(24-07-25 11:43)
 
 Log out
-☐ Is the logout functionality successful in logging the authenticated user out?
+✔ Is the logout functionality successful in logging the authenticated user out? @done(24-07-25 11:43)
 
 General:
 
-☐ Does the project have at least the mandatory queries (_nested_, _normal_ and using _arguments_)?
+✔ Does the project have at least the mandatory queries (_nested_, _normal_ and using _arguments_)? @done(24-07-25 11:43)
 
 Bonus:
 
-☐ + Does the profile showcase additional information beyond the three mandatory sections?
-☐ + Are there additional graphs featured apart from the required two?
-☐ + Has the student created and utilized their own GraphiQL?
-☐ + Does the UI respect the good practices?
+✔ Does the profile showcase additional information beyond the three mandatory sections? @done(24-07-25 11:43)
+✔ Are there additional graphs featured apart from the required two? @done(24-07-25 11:43)
+✘ Has the student created and utilized their own GraphiQL? @cancelled(24-07-25 11:44)
+✔ Does the UI respect the good practices? @done(24-07-25 11:43)

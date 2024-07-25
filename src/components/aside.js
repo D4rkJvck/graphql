@@ -26,11 +26,6 @@ export default class ProfileSection extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    this.shadow.querySelectorAll('figure')
-                        .forEach(elem => {
-                            errorNoData(elem)
-                        });
-
                     throw new Error('No data fetched');
                 }
 
@@ -46,7 +41,13 @@ export default class ProfileSection extends HTMLElement {
                     xpAmount: data.data.xp_amount.aggregate.sum.amount
                 })
             })
-            .catch(err => console.error('ERROR -> ', err))
+            .catch(err => {
+                this.shadow.querySelectorAll('figure')
+                    .forEach(elem => {
+                        errorNoData(elem)
+                    });
+                console.error('ERROR -> ', err);
+            })
     }
     //________________________________________________________________________________
     //

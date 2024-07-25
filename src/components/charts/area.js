@@ -33,7 +33,6 @@ export default class AreaChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    errorNoData(this);
                     throw new Error('No data fetched!');
                 }
 
@@ -54,7 +53,10 @@ export default class AreaChart extends HTMLElement {
                 this.#drawAxis();
                 this.#drawArea();
             })
-            .catch(err => console.error('ERROR -> ', err));
+            .catch(err => {
+                errorNoData(this);
+                console.error('ERROR -> ', err)
+            });
     }
     //_____________________________________________________________________
     //

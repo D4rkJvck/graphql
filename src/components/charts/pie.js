@@ -27,7 +27,6 @@ export default class PieChart extends HTMLElement {
         fetchFromGraphiQL(this.query)
             .then(data => {
                 if (!data) {
-                    errorNoData(this);
                     throw new Error('Data not fetched');
                 }
 
@@ -39,7 +38,10 @@ export default class PieChart extends HTMLElement {
                 this.#createLayout();
                 this.#drawSectors()
             })
-            .catch(error => console.error('ERROR: ', error))
+            .catch(error => {
+                errorNoData(this);
+                console.error('ERROR: ', error);
+            })
     }
     //________________________________________________________________________________
     //
