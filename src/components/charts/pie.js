@@ -26,7 +26,7 @@ export default class PieChart extends HTMLElement {
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
-                if (!data) {
+                if (!data || data.data.top_projects.length === 0) {
                     throw new Error('No data fetched!');
                 }
 

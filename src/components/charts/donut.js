@@ -28,7 +28,7 @@ export default class DonutChart extends HTMLElement {
     connectedCallback() {
         fetchFromGraphiQL(this.query)
             .then(data => {
-                if (!data) {
+                if (!data || data.data.audit[0].length === 0) {
                     throw new Error('No data fetched!');
                 }
 

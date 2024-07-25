@@ -58,7 +58,7 @@ export const xpByMonth = data => {
         currentDate.setMonth(currentDate.getMonth() + 1);
     }
 
-    return monthTab
+    return monthTab;
 };
 
 //_________________________________________________________________________________________
