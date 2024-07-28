@@ -228,15 +228,15 @@ The fetched data from the Graph queries are then displayed in the Dashboard as s
 
 ## Aknowledgements
 
-[![DEBUG](https://img.shields.io/badge/P2P-mamoundiaye-blue)](https://learn.zone01dakar.sn/git/mamoundiaye)  
-[![PEER](https://img.shields.io/badge/P2P-khthiam-blue)](https://learn.zone01dakar.sn/git/khthiam)  
+[![DEBUG](https://img.shields.io/badge/P2P-mamoundiaye-blue)](https://learn.zone01dakar.sn/git/mamoundiaye)
+[![PEER](https://img.shields.io/badge/P2P-khthiam-blue)](https://learn.zone01dakar.sn/git/khthiam)
 [![PEER](https://img.shields.io/badge/P2P-cheikhndiaye-blue)](https://learn.zone01dakar.sn/git/cheikhndiaye)  
 [![TEST](https://img.shields.io/badge/Test-mandaw-red)](https://learn.zone01dakar.sn/git/mandaw)  
-[![AUDIT](https://img.shields.io/badge/Audit-cnzale-green)](https://learn.zone01dakar.sn/git/cnzale)  
-[![AUDIT](https://img.shields.io/badge/Audit-adiane-green)](https://learn.zone01dakar.sn/git/adiane)  
-[![AUDIT](https://img.shields.io/badge/Audit-mouhamadoufadiop-green)](https://learn.zone01dakar.sn/git/mouhamadoufadiop)  
-[![AUDIT](https://img.shields.io/badge/Audit-gdiokhan-green)](https://learn.zone01dakar.sn/git/gdiokhan)  
-[![AUDIT](https://img.shields.io/badge/Audit-khthiam-green)](https://learn.zone01dakar.sn/git/khthiam)  
+[![AUDIT](https://img.shields.io/badge/Audit-cnzale-green)](https://learn.zone01dakar.sn/git/cnzale)
+[![AUDIT](https://img.shields.io/badge/Audit-adiane-green)](https://learn.zone01dakar.sn/git/adiane)
+[![AUDIT](https://img.shields.io/badge/Audit-mouhamadoufadiop-green)](https://learn.zone01dakar.sn/git/mouhamadoufadiop)
+[![AUDIT](https://img.shields.io/badge/Audit-gdiokhan-green)](https://learn.zone01dakar.sn/git/gdiokhan)
+[![AUDIT](https://img.shields.io/badge/Audit-khthiam-green)](https://learn.zone01dakar.sn/git/khthiam)
 
 ###### [*Table of Content ⤴️*](#table-of-contents)
 
